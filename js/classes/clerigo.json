@@ -1,0 +1,491 @@
+{
+  "id": "clerigo",
+  "name": "Clérigo",
+  "description": "Devoto de um dos santos cultuados pelos mortais, o clérigo é um defensor de sua religião. Equipado com armas abençoadas e capaz de conjurar milagres, é um campeão de sua fé e um protetor daqueles que partilham sua crença.",
+  "flavor_text": "Cada clérigo é um membro de uma ordem religiosa dedicada a um santo. Clérigos normalmente começam suas carreiras como acólitos, treinando por longos anos em um mosteiro ou templo, onde estudam textos sagrados, aprendem a manejar armas e fortalecem sua fé, necessária para conjurar os milagres de seu santo.",
+  "cultural_text": "Como defensores da fé, clérigos desempenham diversos papéis. Na paz, estudam as escrituras enquanto cuidam da religiosidade do povo, celebrando missas e outros ritos. Alguns atuam como conselheiros da nobreza, mediadores e diplomatas. Porém, quando necessário, clérigos deixam de lado os mantos religiosos e trajam suas armaduras, tornando-se soldados da fé e empregando suas armas e magia para defender seus fiéis e suas crenças.",
+  "base_stats": {
+    "hit_points": {
+      "base": 16,
+      "per_level": 4,
+      "bonus": "Constituição"
+    },
+    "mana_points": {
+      "per_level": 5,
+      "bonus": "Sabedoria"
+    }
+  },
+  "proficiencies": {
+    "armor": [
+      "Armaduras pesadas",
+      "Escudos"
+    ]
+  },
+  "skills": {
+    "fixed": [
+      "Religião (Sab)",
+      "Vontade (Sab)"
+    ],
+    "choices": {
+      "amount": 2,
+      "from": [
+        "Conhecimento (Int)",
+        "Cura (Sab)",
+        "Diplomacia (Car)",
+        "Fortitude (Con)",
+        "Iniciativa (Des)",
+        "Intuição (Sab)",
+        "Luta (For)",
+        "Misticismo (Int)",
+        "Nobreza (Int)",
+        "Ofício (Int)",
+        "Percepção (Sab)"
+      ]
+    }
+  },
+  "abilities": {
+    "1": [
+      {
+        "name": "Devoto de <Santo>",
+        "type": "choice",
+        "effects": {
+          "description": "Escolhe um santo para seguir, determinando magias divinas, poder concedido e normas",
+          "options": {
+            "santa_crysnia": {
+              "name": "Santa Crysnia",
+              "description": "Padroeira dos viajantes e da comunicação",
+              "symbol": "Uma face iluminada",
+              "norm": "Jamais pode se recusar a traduzir ou revelar conteúdo de texto, nem negar auxílio a viajantes",
+              "granted_power": {
+                "spell": "Compreensão",
+                "special": "Custo de magias de abjuração e adivinhação -1 PM"
+              }
+            },
+            "santa_imuen": {
+              "name": "Santa Imuen",
+              "description": "A santa invisível, protetora das sombras",
+              "symbol": "Uma pena cinza com a ponta branca",
+              "norm": "Não pode usar armaduras pesadas",
+              "granted_power": {
+                "skill_bonus": {
+                  "furtividade": "Sabedoria"
+                },
+                "special": "Alvos desprevenidos sofrem -2 em resistências contra magias divinas"
+              }
+            },
+            "santo_otto": {
+              "name": "Santo Otto",
+              "description": "Padroeiro do comércio e da riqueza",
+              "symbol": "Uma moeda dourada com uma balança",
+              "norm": "Deve doar 20% de qualquer tesouro para a ordem",
+              "granted_power": {
+                "skill_bonus": {
+                  "diplomacia": "Sabedoria"
+                },
+                "special": "Soma Carisma na CD de magias com resistência de Vontade"
+              }
+            },
+            "sao_arnaldo": {
+              "name": "São Arnaldo",
+              "description": "Defensor dos pobres e necessitados",
+              "symbol": "A figura de São Arnaldo em mantos simples",
+              "norm": "Não pode usar armas cortantes/perfurantes nem negar cura/alimento a inocentes",
+              "granted_power": {
+                "spell": "Abençoar Alimentos",
+                "special": "Soma Carisma em curas"
+              }
+            },
+            "sao_theodric": {
+              "name": "São Theodric",
+              "description": "O Santo Cavaleiro, patrono dos clérigos guerreiros",
+              "symbol": "Um falcão carregando uma espada nas garras",
+              "norm": "Não pode recusar ajuda a inocentes e deve obedecer superiores da ordem",
+              "granted_power": {
+                "weapon_bonus": {
+                  "espada_longa": {
+                    "proficiency": true,
+                    "attack": 1,
+                    "damage": 1
+                  }
+                },
+                "special": "Pode usar espada longa como símbolo sagrado"
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Magias",
+        "type": "spellcasting",
+        "effects": {
+          "spells_known": {
+            "initial": 3,
+            "per_level": 1
+          },
+          "circles": {
+            "1": "1º círculo",
+            "5": "2º círculo",
+            "9": "3º círculo",
+            "13": "4º círculo",
+            "17": "5º círculo"
+          },
+          "key_attribute": "Sabedoria"
+        }
+      }
+    ],
+    "20": [
+      {
+        "name": "Santidade",
+        "type": "active",
+        "cost": {
+          "action": "completa",
+          "mana": 15
+        },
+        "effects": {
+          "description": "Lança três magias de seu santo como ação livre sem custo de PM",
+          "special": [
+            "Pode usar magias não conhecidas",
+            "Pode aplicar aprimoramentos pagando seu custo",
+            "Fica atordoado por 1d4 rodadas após uso"
+          ]
+        }
+      }
+    ]
+  },
+  "powers": {
+    "progression": {
+      "start_level": 2,
+      "frequency": "every_level"
+    },
+    "mass_rules": {
+      "requirements": [
+        "Requer 1 hora e materiais de 25 PP",
+        "Cada poder adicional custa +25 PP",
+        "Afeta 1 + Sabedoria alvos",
+        "Alvos devem estar presentes toda a missa",
+        "Efeitos duram um dia",
+        "Uma criatura só pode receber mesma missa uma vez por dia"
+      ]
+    },
+    "list": [
+      {
+        "name": "Aumento de Atributo",
+        "type": "attribute",
+        "effects": {
+          "bonus": "+1 em um atributo",
+          "reselectable": "Uma vez por patamar por atributo"
+        }
+      },
+      {
+        "name": "Autoridade Eclesiástica",
+        "type": "social",
+        "effects": {
+          "skill_bonus": {
+            "diplomacia": 5,
+            "intimidacao": 5,
+            "condition": "Ao lidar com devotos do mesmo santo"
+          },
+          "special": "Paga metade do preço em templos da ordem"
+        },
+        "prerequisites": {
+          "level": 5
+        }
+      },
+      {
+        "name": "Canalizar Amplo",
+        "type": "enhancement",
+        "cost": "+2 PM",
+        "effects": {
+          "description": "Aumenta alcance de Canalizar Energia para médio"
+        },
+        "prerequisites": {
+          "powers": [
+            "Canalizar Energia"
+          ]
+        }
+      },
+      {
+        "name": "Canalizar Energia",
+        "type": "active",
+        "cost": {
+          "action": "padrão",
+          "mana": "X PM"
+        },
+        "effects": {
+          "range": "Curto",
+          "healing": "1d6 PV temporários por PM (criaturas vivas)",
+          "damage": "1d6 dano de luz por PM (mortos-vivos e demônios)",
+          "save": {
+            "type": "Vontade",
+            "cd": "Sabedoria",
+            "effect": "Metade do dano"
+          }
+        }
+      },
+      {
+        "name": "Canalizar Esperança",
+        "type": "enhancement",
+        "cost": "+1 PM",
+        "effects": {
+          "description": "Remove condições negativas de alvos escolhidos",
+          "conditions": [
+            "Abalado",
+            "Apavorado",
+            "Debilitado",
+            "Enjoado",
+            "Exausto",
+            "Fatigado",
+            "Fraco",
+            "Lento"
+          ]
+        },
+        "prerequisites": {
+          "powers": [
+            "Canalizar Energia"
+          ]
+        }
+      },
+      {
+        "name": "Comunhão Vital",
+        "type": "enhancement",
+        "cost": "+2 PM",
+        "effects": {
+          "description": "Ao curar um alvo, outro em alcance curto recupera metade dos PV"
+        }
+      },
+      {
+        "name": "Conhecimento Mágico",
+        "type": "spells",
+        "effects": {
+          "spells_learned": 2,
+          "reselectable": true
+        }
+      },
+      {
+        "name": "Expulsar o Mal",
+        "type": "enhancement",
+        "cost": "+2 PM",
+        "effects": {
+          "description": "Mortos-vivos e demônios que falham no teste ficam apavorados",
+          "duration": "1d6 rodadas"
+        },
+        "prerequisites": {
+          "powers": [
+            "Canalizar Energia"
+          ]
+        }
+      },
+      {
+        "name": "Fiéis",
+        "type": "companion",
+        "effects": {
+          "description": "Recebe grupo de seguidores religiosos",
+          "companion": {
+            "type": "Escolha (carregador, adepto ou turba)",
+            "level": {
+              "7": "Veterano",
+              "15": "Mestre",
+              "base": "Iniciante"
+            }
+          }
+        },
+        "prerequisites": {
+          "attributes": {
+            "CAR": 1
+          },
+          "level": 5
+        }
+      },
+      {
+        "name": "Incitar os Fiéis",
+        "type": "companion_enhancement",
+        "effects": {
+          "description": "Fiéis se tornam parceiro destruidor com dano físico"
+        },
+        "prerequisites": {
+          "powers": [
+            "Fiéis"
+          ]
+        }
+      },
+      {
+        "name": "Liturgia Mágica",
+        "type": "active",
+        "cost": {
+          "action": "movimento"
+        },
+        "effects": {
+          "description": "Próxima magia divina tem CD +2",
+          "duration": "Até final do próximo turno"
+        }
+      },
+      {
+        "name": "Mestre Celebrante",
+        "type": "mass_enhancement",
+        "effects": {
+          "description": "Missas afetam 10x mais pessoas e dobram benefícios"
+        },
+        "prerequisites": {
+          "powers": [
+            "any_mass"
+          ],
+          "level": 12
+        }
+      },
+      {
+        "name": "Missa: Bênção da Vida",
+        "type": "mass",
+        "effects": {
+          "temp_hp": "Nível + Sabedoria"
+        }
+      },
+      {
+        "name": "Missa: Chamado às Armas",
+        "type": "mass",
+        "effects": {
+          "bonus": {
+            "attack": 1,
+            "damage": 1
+          }
+        }
+      },
+      {
+        "name": "Missa: Elevação do Espírito",
+        "type": "mass",
+        "effects": {
+          "temp_mp": "Sabedoria"
+        }
+      },
+      {
+        "name": "Missa: Escudo Divino",
+        "type": "mass",
+        "effects": {
+          "bonus": {
+            "defense": 1,
+            "resistance": 1
+          }
+        }
+      },
+      {
+        "name": "Missa: Superar as Limitações",
+        "type": "mass",
+        "effects": {
+          "bonus": "+1d6 em um teste à escolha"
+        }
+      },
+      {
+        "name": "Prece de Combate",
+        "type": "enhancement",
+        "cost": "+2 PM",
+        "effects": {
+          "description": "Lança magia divina em si mesmo como ação de movimento"
+        }
+      },
+      {
+        "name": "Santificar Arma",
+        "type": "active",
+        "cost": {
+          "action": "movimento",
+          "mana": 3
+        },
+        "effects": {
+          "description": "Arma empunhada torna-se mágica",
+          "duration": "Cena",
+          "effects": [
+            "Emite luz em 9m",
+            "Dano aumenta um passo",
+            "Pode usar Sabedoria em vez do atributo padrão"
+          ]
+        }
+      },
+      {
+        "name": "Símbolo Sagrado Energizado",
+        "type": "active",
+        "cost": {
+          "action": "movimento",
+          "mana": 1
+        },
+        "effects": {
+          "description": "Energiza símbolo sagrado",
+          "duration": "Cena",
+          "effects": [
+            "Emite luz dourada em 9m",
+            "Custo de magias divinas -1 PM"
+          ]
+        }
+      }
+    ]
+  },
+  "advancement_table": {
+    "1": [
+      "Devoto de <Santo>",
+      "Magias (1º círculo)"
+    ],
+    "2": [
+      "Poder de clérigo"
+    ],
+    "3": [
+      "Poder de clérigo"
+    ],
+    "4": [
+      "Poder de clérigo"
+    ],
+    "5": [
+      "Magias (2º círculo)",
+      "Poder de clérigo"
+    ],
+    "6": [
+      "Poder de clérigo"
+    ],
+    "7": [
+      "Poder de clérigo"
+    ],
+    "8": [
+      "Poder de clérigo"
+    ],
+    "9": [
+      "Magias (3º círculo)",
+      "Poder de clérigo"
+    ],
+    "10": [
+      "Poder de clérigo"
+    ],
+    "11": [
+      "Poder de clérigo"
+    ],
+    "12": [
+      "Poder de clérigo"
+    ],
+    "13": [
+      "Magias (4º círculo)",
+      "Poder de clérigo"
+    ],
+    "14": [
+      "Poder de clérigo"
+    ],
+    "15": [
+      "Poder de clérigo"
+    ],
+    "16": [
+      "Poder de clérigo"
+    ],
+    "17": [
+      "Magias (5º círculo)",
+      "Poder de clérigo"
+    ],
+    "18": [
+      "Poder de clérigo"
+    ],
+    "19": [
+      "Poder de clérigo"
+    ],
+    "20": [
+      "Santidade",
+      "Poder de clérigo"
+    ]
+  },
+  "role": {
+    "combat": "support",
+    "party": "healer"
+  }
+}

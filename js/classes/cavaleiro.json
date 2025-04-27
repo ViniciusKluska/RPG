@@ -1,0 +1,501 @@
+{
+  "id": "cavaleiro",
+  "name": "Cavaleiro",
+  "description": "A cavalaria está presente nos reinos desde tempos imemoriais. Ainda que cada povo possua suas próprias formas de cavaleiros, todos são guerreiros honrados, descendentes de uma tradição de bravura e coragem. Cada cavaleiro empenha sua palavra em defesa de uma causa, como um reino, uma religião ou um ideal, como justiça.",
+  "flavor_text": "Este serviço implica em defender aqueles que fazem parte dessa causa e, muitas vezes, se estende aos fracos e necessitados, que enxergam nos cavaleiros um símbolo de esperança e salvação. Desse compromisso, cavaleiros extraem sua força e determinação.",
+  "cultural_text": "A maioria dos cavaleiros vem da nobreza, mas esse caminho não é exclusivo de aristocratas — muitos plebeus já receberam esse título após feitos de heroísmo. Seja qual for sua origem, o cavaleiro é um verdadeiro bastião, uma barreira de aço e coragem que inspira coragem a seus aliados e medo a seus inimigos.",
+  "base_stats": {
+    "hit_points": {
+      "base": 20,
+      "per_level": 5,
+      "bonus": "Constituição"
+    },
+    "mana_points": {
+      "per_level": 3
+    }
+  },
+  "proficiencies": {
+    "weapons": [
+      "Armas marciais"
+    ],
+    "armor": [
+      "Armaduras pesadas",
+      "Escudos"
+    ]
+  },
+  "skills": {
+    "fixed": [
+      "Fortitude (Con)",
+      "Luta (For)"
+    ],
+    "choices": {
+      "amount": 2,
+      "from": [
+        "Adestramento (Car)",
+        "Atletismo (For)",
+        "Cavalgar (Des)",
+        "Diplomacia (Car)",
+        "Guerra (Int)",
+        "Iniciativa (Des)",
+        "Intimidação (Car)",
+        "Nobreza (Int)",
+        "Percepção (Sab)",
+        "Vontade (Sab)"
+      ]
+    }
+  },
+  "abilities": {
+    "1": [
+      {
+        "name": "Código de Honra",
+        "type": "passive",
+        "effects": {
+          "description": "Não pode atacar oponentes pelas costas, caídos, desprevenidos ou incapazes de lutar",
+          "penalty": {
+            "trigger": "Violar o código",
+            "effect": "Perde todos PM até o próximo dia"
+          },
+          "restrictions": [
+            "Não pode flanquear"
+          ]
+        }
+      },
+      {
+        "name": "Baluarte",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "bonus": {
+            "defense": 2,
+            "resistance": 2
+          },
+          "duration": "Até início do próximo turno",
+          "scaling": {
+            "every": 4,
+            "cost": "+1 PM",
+            "bonus": "+2"
+          },
+          "upgrades": {
+            "7": {
+              "cost": "+2 PM",
+              "effect": "Afeta aliados adjacentes"
+            },
+            "15": {
+              "cost": "+5 PM",
+              "effect": "Afeta aliados em alcance curto"
+            }
+          }
+        }
+      }
+    ],
+    "2": [
+      {
+        "name": "Duelo",
+        "type": "active",
+        "cost": "2 PM",
+        "effects": {
+          "target": "Um oponente em alcance curto",
+          "bonus": {
+            "attack": 2,
+            "damage": 2
+          },
+          "duration": "Cena",
+          "restriction": "Termina se atacar outro alvo",
+          "scaling": {
+            "every": 5,
+            "cost": "+1 PM",
+            "bonus": "+1"
+          }
+        }
+      }
+    ],
+    "5": [
+      {
+        "name": "Caminho do Cavaleiro",
+        "type": "choice",
+        "options": [
+          {
+            "name": "Bastião",
+            "effects": {
+              "damage_reduction": 5,
+              "restriction": "Apenas com armadura pesada"
+            }
+          },
+          {
+            "name": "Montaria",
+            "effects": {
+              "companion": {
+                "type": "Cavalo de guerra veterano",
+                "bonus": {
+                  "adestramento": 5,
+                  "cavalgar": 5
+                },
+                "upgrade": {
+                  "level": 11,
+                  "type": "Cavalo de guerra mestre"
+                }
+              },
+              "special": "Pode treinar nova montaria em uma semana"
+            }
+          }
+        ]
+      }
+    ],
+    "11": [
+      {
+        "name": "Resoluto",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "description": "Refaz teste de resistência contra condição ativa",
+          "bonus": 5,
+          "frequency": "Uma vez por efeito"
+        }
+      }
+    ],
+    "20": [
+      {
+        "name": "Bravura Final",
+        "type": "active",
+        "cost": "3 PM",
+        "effects": {
+          "description": "Continua consciente e de pé mesmo com 0 ou menos PV",
+          "duration": "Sustentada"
+        }
+      }
+    ]
+  },
+  "powers": {
+    "progression": {
+      "start_level": 2,
+      "frequency": "every_level"
+    },
+    "combat_stance_rules": {
+      "requirements": [
+        "Assumir postura gasta ação de movimento e 2 PM",
+        "Efeitos duram até final da cena",
+        "Apenas uma postura por vez"
+      ]
+    },
+    "list": [
+      {
+        "name": "Armadura da Honra",
+        "type": "passive",
+        "effects": {
+          "temp_hp": "Nível + Carisma no início de cada cena",
+          "duration": "Cena"
+        }
+      },
+      {
+        "name": "Aumento de Atributo",
+        "type": "attribute",
+        "effects": {
+          "bonus": "+1 em um atributo",
+          "reselectable": "Uma vez por patamar por atributo"
+        }
+      },
+      {
+        "name": "Autoridade Feudal",
+        "type": "social",
+        "cost": {
+          "time": "1 hora",
+          "mana": "2 PM"
+        },
+        "effects": {
+          "description": "Recebe ajuda de um parceiro iniciante até fim da aventura",
+          "restriction": "Apenas onde sua posição tem influência"
+        },
+        "prerequisites": {
+          "level": 6
+        }
+      },
+      {
+        "name": "Desprezar os Covardes",
+        "type": "passive",
+        "effects": {
+          "damage_reduction": 5,
+          "conditions": [
+            "Caído",
+            "Desprevenido",
+            "Flanqueado"
+          ]
+        }
+      },
+      {
+        "name": "Escudeiro",
+        "type": "companion",
+        "effects": {
+          "bonus": {
+            "weapon_damage": 1,
+            "defense": 1
+          },
+          "special": {
+            "cost": "1 PM",
+            "effect": "Ação de movimento extra"
+          },
+          "note": "Não conta no limite de parceiros"
+        }
+      },
+      {
+        "name": "Especialização em Armadura",
+        "type": "passive",
+        "effects": {
+          "damage_reduction": 5,
+          "restriction": "Apenas com armadura pesada"
+        },
+        "prerequisites": {
+          "level": 12
+        }
+      },
+      {
+        "name": "Estandarte",
+        "type": "passive",
+        "effects": {
+          "description": "Aliados que veem seu estandarte recebem PM temporários",
+          "temp_mp": "Carisma (mínimo 1)",
+          "duration": "Cena"
+        },
+        "prerequisites": {
+          "powers": [
+            "Título"
+          ],
+          "level": 14
+        }
+      },
+      {
+        "name": "Etiqueta",
+        "type": "enhancement",
+        "effects": {
+          "skill_bonus": {
+            "diplomacia": 2,
+            "nobreza": 2
+          },
+          "special": {
+            "cost": "1 PM",
+            "effect": "Pode rolar novamente teste dessas perícias"
+          }
+        }
+      },
+      {
+        "name": "Investida Destruidora",
+        "type": "active",
+        "cost": "2 PM",
+        "effects": {
+          "trigger": "Antes de rolar ataque de investida",
+          "damage": "+2d8"
+        }
+      },
+      {
+        "name": "Investida Esmagadora",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "trigger": "Acertar ataque de investida",
+          "effect": "Pode fazer manobra derrubar"
+        }
+      },
+      {
+        "name": "Montaria Corajosa",
+        "type": "passive",
+        "effects": {
+          "damage": "+1d6 em ataques corpo a corpo montado"
+        },
+        "prerequisites": {
+          "powers": [
+            "Montaria"
+          ]
+        }
+      },
+      {
+        "name": "Pajem",
+        "type": "companion",
+        "effects": {
+          "skill_bonus": {
+            "diplomacia": 2
+          },
+          "special": "Melhora condição de descanso em uma categoria",
+          "note": "Não conta no limite de parceiros"
+        }
+      },
+      {
+        "name": "Postura de Combate: Castigo de Ferro",
+        "type": "combat_stance",
+        "effects": {
+          "trigger": "Aliado adjacente sofre ataque corpo a corpo",
+          "effect": {
+            "cost": "1 PM",
+            "action": "Ataca o agressor"
+          }
+        }
+      },
+      {
+        "name": "Postura de Combate: Foco de Batalha",
+        "type": "combat_stance",
+        "effects": {
+          "trigger": "Ser atacado",
+          "effect": "Recebe 1 PM temporário",
+          "limit": "Máximo igual ao nível",
+          "duration": "Cena"
+        }
+      },
+      {
+        "name": "Postura de Combate: Muralha Intransponível",
+        "type": "combat_stance",
+        "effects": {
+          "requirements": [
+            "Empunhar escudo"
+          ],
+          "bonus": {
+            "defense": 1,
+            "reflex": 1,
+            "scaling": {
+              "cost": "2 PM",
+              "bonus": "+1"
+            }
+          },
+          "special": "Nenhum dano em teste de Reflexos bem-sucedido",
+          "penalty": "Deslocamento reduzido para 3m"
+        }
+      },
+      {
+        "name": "Postura de Combate: Provocação Petulante",
+        "type": "combat_stance",
+        "effects": {
+          "trigger": "Inimigos iniciam turno em alcance curto",
+          "save": {
+            "type": "Vontade",
+            "cd": "Carisma",
+            "effect": "Devem atacar você"
+          },
+          "keywords": [
+            "Mental"
+          ]
+        }
+      },
+      {
+        "name": "Postura de Combate: Torre Inabalável",
+        "type": "combat_stance",
+        "effects": {
+          "bonus": {
+            "defense": "Constituição"
+          },
+          "special": "Pode usar Fortitude em vez de Reflexos e Vontade",
+          "restriction": "Não pode se deslocar"
+        }
+      },
+      {
+        "name": "Solidez",
+        "type": "passive",
+        "effects": {
+          "description": "Soma bônus do escudo em testes de resistência",
+          "requirement": "Empunhar escudo"
+        }
+      },
+      {
+        "name": "Título",
+        "type": "social",
+        "effects": {
+          "benefits": {
+            "gold": "20 PO por nível no início da aventura",
+            "or": "Ajuda de um parceiro veterano"
+          },
+          "special": {
+            "condition": "Se for regente",
+            "bonus": {
+              "domain_tests": 2
+            }
+          }
+        },
+        "prerequisites": {
+          "powers": [
+            "Autoridade Feudal"
+          ],
+          "level": 10,
+          "special": [
+            "Conquistar terras ou realizar serviço para um nobre"
+          ]
+        }
+      }
+    ]
+  },
+  "advancement_table": {
+    "1": [
+      "Baluarte +2",
+      "Código de honra"
+    ],
+    "2": [
+      "Duelo +2",
+      "Poder de cavaleiro"
+    ],
+    "3": [
+      "Poder de cavaleiro"
+    ],
+    "4": [
+      "Poder de cavaleiro"
+    ],
+    "5": [
+      "Baluarte +4",
+      "Caminho do cavaleiro",
+      "Poder de cavaleiro"
+    ],
+    "6": [
+      "Poder de cavaleiro"
+    ],
+    "7": [
+      "Baluarte (aliados adjacentes)",
+      "Duelo +3",
+      "Poder de cavaleiro"
+    ],
+    "8": [
+      "Poder de cavaleiro"
+    ],
+    "9": [
+      "Baluarte +6",
+      "Poder de cavaleiro"
+    ],
+    "10": [
+      "Poder de cavaleiro"
+    ],
+    "11": [
+      "Poder de cavaleiro",
+      "Resoluto"
+    ],
+    "12": [
+      "Duelo +4",
+      "Poder de cavaleiro"
+    ],
+    "13": [
+      "Baluarte +8",
+      "Poder de cavaleiro"
+    ],
+    "14": [
+      "Poder de cavaleiro"
+    ],
+    "15": [
+      "Baluarte (aliados em alcance curto)",
+      "Poder de cavaleiro"
+    ],
+    "16": [
+      "Poder de cavaleiro"
+    ],
+    "17": [
+      "Baluarte +10",
+      "Duelo +5",
+      "Poder de cavaleiro"
+    ],
+    "18": [
+      "Poder de cavaleiro"
+    ],
+    "19": [
+      "Poder de cavaleiro"
+    ],
+    "20": [
+      "Bravura final",
+      "Poder de cavaleiro"
+    ]
+  },
+  "role": {
+    "combat": "tank",
+    "party": "defender"
+  }
+}

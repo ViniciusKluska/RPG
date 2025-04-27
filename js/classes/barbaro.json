@@ -1,0 +1,454 @@
+{
+  "id": "barbaro",
+  "name": "Bárbaro",
+  "description": "Além das fronteiras da civilização, em florestas profundas e montanhas escarpadas, há aldeias, tribos e bandos nômades que praticam uma forma mais primordial de existência, influenciada pela natureza. O bárbaro é um combatente oriundo destas comunidades ancestrais, que desenvolveu suas habilidades de luta desafiando os perigos do mundo selvagem onde nasceu. Ao contrário de guerreiros civilizados, que se valem de treino e técnicas apuradas, o bárbaro usa seus instintos e sua força interior para se tornar um lutador temível, capaz de evocar força e resistência sobrenaturais.",
+  "flavor_text": "Embora se lancem ao combate com fúria selvagem e aparentemente primitiva, se engana quem pensa que os bárbaros são simplórios ou tolos. Muitos são guerreiros astutos e sagazes, que compensam sua falta de conhecimento civilizado com sagacidade aguçada por anos de sobrevivência em suas terras natais. Muitos são até mesmo governantes de suas comunidades, uma posição que alcançaram combinando força com sabedoria para liderança.",
+  "base_stats": {
+    "hit_points": {
+      "base": 24,
+      "per_level": 6,
+      "bonus": "Constituição"
+    },
+    "mana_points": {
+      "per_level": 3
+    }
+  },
+  "proficiencies": {
+    "weapons": [
+      "Armas marciais"
+    ],
+    "armor": [
+      "Escudos"
+    ]
+  },
+  "skills": {
+    "fixed": [
+      "Fortitude (Con)",
+      "Luta (For)"
+    ],
+    "choices": {
+      "amount": 4,
+      "from": [
+        "Adestramento (Car)",
+        "Atletismo (For)",
+        "Cavalgar (Des)",
+        "Iniciativa (Des)",
+        "Intimidação (Car)",
+        "Ofício (Int)",
+        "Percepção (Sab)",
+        "Pontaria (Des)",
+        "Sobrevivência (Sab)",
+        "Vontade (Sab)"
+      ]
+    }
+  },
+  "abilities": {
+    "1": [
+      {
+        "name": "Fúria",
+        "type": "active",
+        "cost": "2 PM",
+        "effects": {
+          "bonuses": {
+            "attack": 2,
+            "melee_damage": 2
+          },
+          "restrictions": "Não pode realizar ações que exijam calma e concentração",
+          "scaling": {
+            "every": 5,
+            "cost": "+1 PM",
+            "bonus": "+1"
+          },
+          "duration": "Termina se não atacar nem for alvo de efeito hostil ao fim da rodada"
+        }
+      }
+    ],
+    "3": [
+      {
+        "name": "Instinto Selvagem",
+        "type": "passive",
+        "effects": {
+          "bonuses": {
+            "damage": 1,
+            "perception": 1,
+            "reflex": 1
+          },
+          "scaling": {
+            "every": 6,
+            "bonus": "+1"
+          }
+        }
+      }
+    ],
+    "5": [
+      {
+        "name": "Redução de Dano",
+        "type": "passive",
+        "effects": {
+          "damage_reduction": 2,
+          "scaling": {
+            "every": 3,
+            "bonus": 2,
+            "max": 10,
+            "max_level": 17
+          }
+        }
+      }
+    ],
+    "20": [
+      {
+        "name": "Fúria Titânica",
+        "type": "passive",
+        "effects": {
+          "description": "O bônus de Fúria em testes de ataque e rolagens de dano é dobrado"
+        }
+      }
+    ]
+  },
+  "powers": {
+    "progression": {
+      "start_level": 2,
+      "frequency": "every_level"
+    },
+    "list": [
+      {
+        "name": "Alma de Bronze",
+        "type": "fury_enhancement",
+        "effects": {
+          "temp_hp": "nível + Força quando entra em fúria"
+        }
+      },
+      {
+        "name": "Aumento de Atributo",
+        "type": "attribute",
+        "effects": {
+          "bonus": "+1 em um atributo",
+          "special": "Pode ser escolhido múltiplas vezes, mas apenas uma vez por patamar para um mesmo atributo"
+        }
+      },
+      {
+        "name": "Brado Assustador",
+        "type": "active",
+        "cost": "1 PM e ação de movimento",
+        "effects": {
+          "area": "Alcance curto",
+          "effect": "Inimigos ficam vulneráveis até o fim da cena"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Intimidação"
+          ]
+        },
+        "keywords": [
+          "Medo"
+        ]
+      },
+      {
+        "name": "Cicatrizes Ritualísticas",
+        "type": "passive",
+        "effects": {
+          "skill_bonus": {
+            "intimidacao": 2
+          },
+          "damage_reduction": 2
+        },
+        "prerequisites": {
+          "level": 5,
+          "skills": [
+            "Treinado em Vontade"
+          ]
+        }
+      },
+      {
+        "name": "Crítico Brutal",
+        "type": "passive",
+        "effects": {
+          "critical_multiplier": "+1 com armas corpo a corpo e de arremesso"
+        },
+        "prerequisites": {
+          "level": 6
+        }
+      },
+      {
+        "name": "Destruidor",
+        "type": "passive",
+        "effects": {
+          "description": "Pode rolar novamente resultados 1 ou 2 no dano de armas corpo a corpo de duas mãos"
+        },
+        "prerequisites": {
+          "attributes": {
+            "FOR": 1
+          }
+        }
+      },
+      {
+        "name": "Espírito Inquebrável",
+        "type": "fury_enhancement",
+        "effects": {
+          "description": "Não fica inconsciente com 0 PV ou menos durante a Fúria"
+        },
+        "prerequisites": {
+          "powers": [
+            "Alma de Bronze"
+          ]
+        }
+      },
+      {
+        "name": "Esquiva Sobrenatural",
+        "type": "passive",
+        "effects": {
+          "description": "Nunca fica surpreendido"
+        }
+      },
+      {
+        "name": "Força Indomável",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "description": "Soma seu nível em um teste de Força ou Atletismo"
+        }
+      },
+      {
+        "name": "Frenesi",
+        "type": "active",
+        "cost": "2 PM",
+        "effects": {
+          "description": "Um ataque adicional corpo a corpo ou com arma de arremesso por rodada durante a Fúria"
+        }
+      },
+      {
+        "name": "Fúria Bestial",
+        "type": "fury_enhancement",
+        "effects": {
+          "natural_weapon": {
+            "type": "Mordida",
+            "damage": "1d6",
+            "critical": "x2",
+            "damage_type": "Perfuração"
+          },
+          "extra_attack": {
+            "cost": "1 PM",
+            "condition": "Após outro ataque"
+          }
+        }
+      },
+      {
+        "name": "Fúria do Deserto",
+        "type": "fury_enhancement",
+        "effects": {
+          "movement": "+3m",
+          "special": "Aplica bônus de Fúria também em armas de arremesso"
+        }
+      },
+      {
+        "name": "Fúria Raivosa",
+        "type": "fury_enhancement",
+        "cost": "1 PM",
+        "effects": {
+          "description": "Pode manter Fúria por mais uma rodada mesmo sem atacar/ser atacado"
+        }
+      },
+      {
+        "name": "Golpe Poderoso",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "description": "Adiciona um dado de dano extra do mesmo tipo ao acertar ataque corpo a corpo"
+        }
+      },
+      {
+        "name": "Ímpeto",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "movement": "+6m por uma rodada"
+        }
+      },
+      {
+        "name": "Investida Imprudente",
+        "type": "active",
+        "effects": {
+          "defense_penalty": -5,
+          "damage_bonus": "+1d12",
+          "condition": "Durante investida"
+        }
+      },
+      {
+        "name": "Pele de Ferro",
+        "type": "passive",
+        "effects": {
+          "defense": 4,
+          "restriction": "Não usar armadura pesada"
+        }
+      },
+      {
+        "name": "Pele de Aço",
+        "type": "passive",
+        "effects": {
+          "defense": 8,
+          "restriction": "Não usar armadura pesada"
+        },
+        "prerequisites": {
+          "powers": [
+            "Pele de Ferro"
+          ],
+          "level": 8
+        }
+      },
+      {
+        "name": "Sangue dos Inimigos",
+        "type": "fury_enhancement",
+        "effects": {
+          "trigger": "Acerto crítico ou reduzir inimigo a 0 PV",
+          "bonus": {
+            "attack": 1,
+            "damage": 1,
+            "cumulative": true,
+            "max": "Igual ao nível"
+          }
+        }
+      },
+      {
+        "name": "Superstição",
+        "type": "passive",
+        "effects": {
+          "magic_resistance": 5
+        }
+      },
+      {
+        "name": "Totem Espiritual",
+        "type": "passive",
+        "effects": {
+          "mana_bonus": "Soma Sabedoria",
+          "totem_animals": {
+            "coruja": {
+              "spell": "Orientação",
+              "description": "A sábia coruja guia seus discípulos"
+            },
+            "corvo": {
+              "spell": "Visão Mística",
+              "description": "Um seguidor do corvo enxerga além do véu"
+            },
+            "falcao": {
+              "spell": "Detectar Ameaças",
+              "description": "Sempre atento, o falcão permite que você veja o perigo"
+            },
+            "grifo": {
+              "spell": "Primor Atlético",
+              "description": "O mais veloz dos animais"
+            },
+            "lobo": {
+              "spell": "Concentração de Combate",
+              "description": "O lobo é feroz e letal"
+            },
+            "raposa": {
+              "spell": "Imagem Espelhada",
+              "description": "A sagaz raposa nunca está onde se espera"
+            },
+            "tartaruga": {
+              "spell": "Armadura Arcana",
+              "description": "A tartaruga protege os seus"
+            },
+            "urso": {
+              "spell": "Vitalidade Fantasma",
+              "description": "O vigoroso urso fortalece",
+              "special": "Pode usar aprimoramentos como druida do mesmo nível"
+            }
+          }
+        },
+        "prerequisites": {
+          "attributes": {
+            "SAB": 1
+          },
+          "level": 4
+        }
+      },
+      {
+        "name": "Vigor Primal",
+        "type": "active",
+        "cost": "Ação de movimento e PM limitado pela Constituição",
+        "effects": {
+          "healing": "1d12 PV por PM gasto"
+        }
+      }
+    ]
+  },
+  "advancement_table": {
+    "1": [
+      "Fúria +2"
+    ],
+    "2": [
+      "Poder de bárbaro"
+    ],
+    "3": [
+      "Instinto selvagem +1",
+      "Poder de bárbaro"
+    ],
+    "4": [
+      "Poder de bárbaro"
+    ],
+    "5": [
+      "Poder de bárbaro",
+      "Redução de dano 2"
+    ],
+    "6": [
+      "Fúria +3",
+      "Poder de bárbaro"
+    ],
+    "7": [
+      "Poder de bárbaro"
+    ],
+    "8": [
+      "Poder de bárbaro",
+      "Redução de dano 4"
+    ],
+    "9": [
+      "Instinto selvagem +2",
+      "Poder de bárbaro"
+    ],
+    "10": [
+      "Poder de bárbaro"
+    ],
+    "11": [
+      "Fúria +4",
+      "Poder de bárbaro",
+      "Redução de dano 6"
+    ],
+    "12": [
+      "Poder de bárbaro"
+    ],
+    "13": [
+      "Poder de bárbaro"
+    ],
+    "14": [
+      "Poder de bárbaro",
+      "Redução de dano 8"
+    ],
+    "15": [
+      "Instinto selvagem +3",
+      "Poder de bárbaro"
+    ],
+    "16": [
+      "Fúria +5",
+      "Poder de bárbaro"
+    ],
+    "17": [
+      "Poder de bárbaro",
+      "Redução de dano 10"
+    ],
+    "18": [
+      "Poder de bárbaro"
+    ],
+    "19": [
+      "Poder de bárbaro"
+    ],
+    "20": [
+      "Fúria titânica",
+      "Poder de bárbaro"
+    ]
+  },
+  "role": {
+    "combat": "damage",
+    "party": "front-line"
+  }
+}

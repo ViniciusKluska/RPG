@@ -1,0 +1,552 @@
+{
+  "id": "mago",
+  "name": "Mago",
+  "description": "O mago é uma figura de poder e mistério, mestre de segredos antigos. Com seus feitiços, pode controlar diversos aspectos da realidade, desde manifestar chamas e relâmpagos até alterar a forma de objetos e criaturas.",
+  "flavor_text": "Por seu enorme poder, a magia é uma força temida e cobiçada. Aqueles que se arvoram por conhecimento e poder arcano têm um caminho árduo a percorrer, muitas vezes perigoso, quase sempre solitário. Mesmo assim, tornar-se capaz de controlar e moldar o mundo ao seu bel prazer usando as artes místicas ainda é o sonho de muitos, e o destino de poucos.",
+  "cultural_text": "A maioria dos conjuradores ocupa uma posição de destaque na sociedade, agindo como conselheiros para regentes ou sendo eles mesmos figuras de autoridade política. Muitas são as fontes de poder de um mago, e os meios para acessar a magia seguem tradições obscuras que se ramificaram e se transformaram ao longo das eras.",
+  "base_stats": {
+    "hit_points": {
+      "base": 8,
+      "per_level": 2,
+      "bonus": "Constituição"
+    },
+    "mana_points": {
+      "per_level": 5,
+      "bonus": "Inteligência"
+    }
+  },
+  "proficiencies": {},
+  "skills": {
+    "fixed": [
+      "Misticismo (Int)",
+      "Vontade (Sab)"
+    ],
+    "choices": {
+      "amount": 2,
+      "from": [
+        "Conhecimento (Int)",
+        "Diplomacia (Car)",
+        "Enganação (Car)",
+        "Guerra (Int)",
+        "Iniciativa (Des)",
+        "Intimidação (Car)",
+        "Intuição (Sab)",
+        "Investigação (Int)",
+        "Nobreza (Int)",
+        "Ofício (Int)",
+        "Percepção (Sab)"
+      ]
+    }
+  },
+  "abilities": {
+    "1": [
+      {
+        "name": "Magias",
+        "type": "spellcasting",
+        "effects": {
+          "description": "Pode lançar magias arcanas",
+          "initial_spells": "Três magias de 1º círculo",
+          "spells_per_level": "Uma nova magia por nível",
+          "circles": {
+            "1": "Nível 1",
+            "2": "Nível 5",
+            "3": "Nível 9",
+            "4": "Nível 13",
+            "5": "Nível 17"
+          },
+          "spellcasting": {
+            "attribute": "Inteligência"
+          }
+        }
+      },
+      {
+        "name": "Tradição Arcana",
+        "type": "choice",
+        "effects": {
+          "description": "Escolha uma tradição arcana que define sua fonte de poder",
+          "options": [
+            {
+              "name": "Abissal",
+              "price": "Teste de Vontade (CD 15 + PM) ao usar aprimoramentos ou perde PM",
+              "basic_secret": {
+                "name": "Aura Nefasta",
+                "effects": {
+                  "immunity": "Medo",
+                  "aura": {
+                    "cost": "1 PM",
+                    "radius": "9m",
+                    "effect": "-2 em testes de resistência de inimigos"
+                  }
+                }
+              },
+              "improved_secret": {
+                "name": "Servo Abissal",
+                "effects": {
+                  "bonus": {
+                    "defense": "+2",
+                    "spell_cost": "-1 PM"
+                  },
+                  "special": "Pode sacrificar para reduzir dano pela metade"
+                }
+              },
+              "superior_secret": {
+                "name": "Transformação Abissal",
+                "effects": {
+                  "damage_reduction": 5,
+                  "dark_vision": true,
+                  "immunities": [
+                    "Cansaço",
+                    "Metabólicos",
+                    "Trevas",
+                    "Veneno"
+                  ]
+                }
+              }
+            },
+            {
+              "name": "Elemental",
+              "price": "Escolha um tipo de dano (ácido, eletricidade, fogo ou frio). Não pode aprender magias dos outros tipos",
+              "basic_secret": {
+                "effects": {
+                  "damage_reduction": "5 contra tipo escolhido",
+                  "spell_dc": "+1 em magias do tipo escolhido"
+                }
+              },
+              "improved_secret": {
+                "effects": {
+                  "spell_cost": "-1 PM em magias do tipo escolhido",
+                  "damage": "+1 por dado em magias do tipo escolhido"
+                }
+              },
+              "superior_secret": {
+                "effects": {
+                  "immunity": "Tipo de dano escolhido",
+                  "temp_mp": "Ganha PM temporários igual ao círculo ao derrotar inimigos"
+                }
+              }
+            },
+            {
+              "name": "Erudita",
+              "price": "Precisa memorizar magias através de estudo diário do grimório",
+              "basic_secret": {
+                "effects": {
+                  "bonus_spells": "Uma magia adicional por círculo"
+                }
+              },
+              "improved_secret": {
+                "effects": {
+                  "description": "Pode copiar magias de pergaminhos e grimórios",
+                  "cost": "250 PP por PM da magia"
+                }
+              },
+              "superior_secret": {
+                "effects": {
+                  "description": "Pode lançar duas magias de 1º círculo com uma ação",
+                  "cost": "2 PM adicional"
+                }
+              }
+            },
+            {
+              "name": "Onírica",
+              "price": "Recupera apenas PV ou PM por descanso",
+              "basic_secret": {
+                "name": "Aura Onírica",
+                "effects": {
+                  "cost": "1 PM",
+                  "radius": "9m",
+                  "duration": "Sustentada",
+                  "effect": "+2 CD em magias de Vontade"
+                }
+              },
+              "improved_secret": {
+                "effects": {
+                  "spell_cost": "-1 PM na aura",
+                  "special": "Pode mudar testes para Vontade por +1 PM"
+                }
+              },
+              "superior_secret": {
+                "effects": {
+                  "temp_mp": "1 PM por falha em Vontade na aura"
+                }
+              }
+            },
+            {
+              "name": "Rústica",
+              "price": "Precisa de fetiche para lançar magias",
+              "basic_secret": {
+                "effects": {
+                  "description": "Pode usar até dois catalisadores por magia"
+                }
+              },
+              "improved_secret": {
+                "effects": {
+                  "description": "Fetiche pode absorver dano letal",
+                  "special": "Fica com 1 PV se fetiche absorver todo dano"
+                }
+              },
+              "superior_secret": {
+                "effects": {
+                  "description": "Pode criar poções de até 5º círculo"
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "20": [
+      {
+        "name": "Alta Arcana",
+        "type": "passive",
+        "effects": {
+          "description": "Reduz custo de magias pela metade"
+        }
+      }
+    ]
+  },
+  "powers": {
+    "progression": {
+      "start_level": 2,
+      "frequency": "every_level"
+    },
+    "list": [
+      {
+        "name": "Aumento de Atributo",
+        "type": "attribute",
+        "effects": {
+          "bonus": "+1 em um atributo",
+          "reselectable": "Uma vez por patamar por atributo"
+        }
+      },
+      {
+        "name": "Conhecimento Mágico",
+        "type": "magic",
+        "effects": {
+          "description": "Aprende duas magias de qualquer círculo que possa lançar",
+          "reselectable": true
+        }
+      },
+      {
+        "name": "Conhecimento Proibido",
+        "type": "magic",
+        "effects": {
+          "description": "Aprende uma magia de qualquer tradição"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Conhecimento"
+          ]
+        }
+      },
+      {
+        "name": "Contramagia Aprimorada",
+        "type": "active",
+        "effects": {
+          "description": "Pode fazer contramagia como reação",
+          "frequency": "Uma vez por rodada"
+        },
+        "prerequisites": {
+          "spells": [
+            "Dissipar Magia"
+          ]
+        }
+      },
+      {
+        "name": "Envolto em Mistério",
+        "type": "passive",
+        "effects": {
+          "bonus": "+5 em Enganação e Intimidação",
+          "restriction": "Contra alvos não treinados em Conhecimento ou Misticismo"
+        }
+      },
+      {
+        "name": "Escudo Mágico",
+        "type": "passive",
+        "effects": {
+          "description": "Bônus na Defesa igual ao círculo da magia lançada",
+          "duration": "Até início do próximo turno"
+        }
+      },
+      {
+        "name": "Familiar",
+        "type": "companion",
+        "effects": {
+          "description": "Recebe um animal mágico como familiar",
+          "options": [
+            {
+              "name": "Borboleta",
+              "effect": "+1 CD em magias de Vontade"
+            },
+            {
+              "name": "Cobra",
+              "effect": "+1 CD em magias de Fortitude"
+            },
+            {
+              "name": "Coruja",
+              "effect": "Pode aumentar alcance para curto por 1 PM"
+            },
+            {
+              "name": "Corvo",
+              "effect": "Vantagem em Misticismo/Vontade por 1 PM"
+            },
+            {
+              "name": "Falcão",
+              "effect": "Não pode ser surpreendido"
+            },
+            {
+              "name": "Fuinha",
+              "effect": "+2 em Iniciativa e Investigação"
+            },
+            {
+              "name": "Gato",
+              "effect": "Visão no escuro e +2 em Furtividade"
+            },
+            {
+              "name": "Lagarto",
+              "effect": "+1 CD em magias de Reflexos"
+            },
+            {
+              "name": "Macaco",
+              "effect": "Pode manipular itens em alcance curto"
+            },
+            {
+              "name": "Morcego",
+              "effect": "Percepção às cegas em alcance curto"
+            },
+            {
+              "name": "Rato",
+              "effect": "Usa Inteligência em Fortitude"
+            },
+            {
+              "name": "Sapo",
+              "effect": "Soma Inteligência aos PV"
+            },
+            {
+              "name": "Tartaruga",
+              "effect": "+1 na Defesa e nado igual ao deslocamento"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Fluxo de Mana",
+        "type": "passive",
+        "effects": {
+          "description": "Pode manter dois efeitos sustentados com uma ação livre"
+        },
+        "prerequisites": {
+          "level": 10
+        }
+      },
+      {
+        "name": "Fortalecimento Arcano",
+        "type": "passive",
+        "effects": {
+          "description": "Aumenta CD das magias",
+          "bonus": {
+            "default": "+1",
+            "4th_circle": "+2"
+          }
+        },
+        "prerequisites": {
+          "level": 5
+        }
+      },
+      {
+        "name": "Geometria Mística",
+        "type": "passive",
+        "effects": {
+          "description": "Pode excluir alvos de magias em área",
+          "amount": "Igual à Inteligência"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Conhecimento"
+          ]
+        }
+      },
+      {
+        "name": "Magia Pungente",
+        "type": "active",
+        "effects": {
+          "description": "Aumenta CD da magia em +2",
+          "cost": "1 PM"
+        }
+      },
+      {
+        "name": "Mago de Batalha",
+        "type": "passive",
+        "effects": {
+          "description": "Soma Inteligência no dano das magias"
+        }
+      },
+      {
+        "name": "Poder Mágico",
+        "type": "passive",
+        "effects": {
+          "description": "+1 PM por nível de mago"
+        }
+      },
+      {
+        "name": "Raio Arcano",
+        "type": "active",
+        "effects": {
+          "description": "Causa dano de essência",
+          "damage": {
+            "base": "1d8",
+            "progression": "+1d8 por círculo acima do 1º"
+          },
+          "range": "Curto",
+          "save": {
+            "type": "Reflexos",
+            "dc": "Inteligência",
+            "effect": "Metade do dano"
+          }
+        }
+      },
+      {
+        "name": "Raio da Tradição",
+        "type": "passive",
+        "effects": {
+          "description": "Adiciona efeito ao Raio Arcano baseado na tradição",
+          "effects": {
+            "Abissal": "Não pode ser curado por 1 rodada",
+            "Elemental": "Dano adicional",
+            "Onírica": "Ofuscado por 1 rodada",
+            "Erudita": "Vulnerável por 1 rodada",
+            "Rústica": "Lento por 1 rodada"
+          }
+        },
+        "prerequisites": {
+          "powers": [
+            "Raio Arcano"
+          ]
+        }
+      },
+      {
+        "name": "Raio Poderoso",
+        "type": "passive",
+        "effects": {
+          "description": "Melhora o Raio Arcano",
+          "changes": {
+            "damage_die": "d12",
+            "range": "Médio"
+          }
+        },
+        "prerequisites": {
+          "powers": [
+            "Raio Arcano"
+          ]
+        }
+      },
+      {
+        "name": "Segredo Aprimorado",
+        "type": "passive",
+        "effects": {
+          "description": "Recebe o segredo aprimorado da tradição"
+        },
+        "prerequisites": {
+          "level": 5
+        }
+      },
+      {
+        "name": "Segredo Superior",
+        "type": "passive",
+        "effects": {
+          "description": "Recebe o segredo superior da tradição"
+        },
+        "prerequisites": {
+          "powers": [
+            "Segredo Aprimorado"
+          ],
+          "level": 9
+        }
+      },
+      {
+        "name": "Tinta do Mago",
+        "type": "crafting",
+        "effects": {
+          "description": "Pode criar pergaminhos",
+          "special": "Custo reduzido à metade se tiver Escrever Pergaminho"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Ofício (escriba)"
+          ]
+        }
+      }
+    ]
+  },
+  "advancement_table": {
+    "1": [
+      "Magias (1º círculo)",
+      "Tradição arcana"
+    ],
+    "2": [
+      "Poder de mago"
+    ],
+    "3": [
+      "Poder de mago"
+    ],
+    "4": [
+      "Poder de mago"
+    ],
+    "5": [
+      "Magias (2º círculo)",
+      "Poder de mago"
+    ],
+    "6": [
+      "Poder de mago"
+    ],
+    "7": [
+      "Poder de mago"
+    ],
+    "8": [
+      "Poder de mago"
+    ],
+    "9": [
+      "Magias (3º círculo)",
+      "Poder de mago"
+    ],
+    "10": [
+      "Poder de mago"
+    ],
+    "11": [
+      "Poder de mago"
+    ],
+    "12": [
+      "Poder de mago"
+    ],
+    "13": [
+      "Magias (4º círculo)",
+      "Poder de mago"
+    ],
+    "14": [
+      "Poder de mago"
+    ],
+    "15": [
+      "Poder de mago"
+    ],
+    "16": [
+      "Poder de mago"
+    ],
+    "17": [
+      "Magias (5º círculo)",
+      "Poder de mago"
+    ],
+    "18": [
+      "Poder de mago"
+    ],
+    "19": [
+      "Poder de mago"
+    ],
+    "20": [
+      "Alta arcana",
+      "Poder de mago"
+    ]
+  },
+  "role": {
+    "combat": "caster",
+    "party": "controller"
+  }
+}

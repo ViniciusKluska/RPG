@@ -1,0 +1,499 @@
+{
+  "id": "soldado",
+  "name": "Soldado",
+  "description": "De lutadores de taverna a guardas palacianos, passando por capangas cruéis e arqueiros sagazes, soldados são especialistas em armas, armaduras e estratégias de combate. Treinados no uso dos mais variados equipamentos marciais e nas mais diversas técnicas de luta, são encontrados em todos os recantos de Ghanor e dos reinos.",
+  "flavor_text": "À primeira vista, soldados podem parecer simplórios. Mas isso está longe de ser verdade. Um soldado é o combatente por excelência, fruto de uma preparação intensa e especializado em técnicas letais e nos mais diversos instrumentos de guerra. Seu treinamento exaustivo os prepara para resistir aos rigores das mais sangrentas lutas e para sobrepujar os mais perigosos oponentes.",
+  "cultural_text": "Existem diversos tipos de soldados. Alguns lutam de forma disciplinada, tendo sido treinados por um mestre de armas no pátio de um castelo. Outros combatem por instinto, tendo aprendido o que sabem em becos escuros e tavernas sujas. Alguns se especializam em armas específicas, enquanto outros lutam com o que estiver à mão.",
+  "base_stats": {
+    "hit_points": {
+      "base": 20,
+      "per_level": 5,
+      "bonus": "Constituição"
+    },
+    "mana_points": {
+      "per_level": 3
+    }
+  },
+  "proficiencies": {
+    "weapons": [
+      "Armas marciais"
+    ],
+    "armor": [
+      "Escudos"
+    ]
+  },
+  "skills": {
+    "fixed": [
+      "Fortitude (Con)"
+    ],
+    "choices": {
+      "amount": 3,
+      "initial_choice": {
+        "amount": 1,
+        "from": [
+          "Luta (For)",
+          "Pontaria (Des)"
+        ]
+      },
+      "from": [
+        "Adestramento (Car)",
+        "Atletismo (For)",
+        "Cavalgar (Des)",
+        "Guerra (Int)",
+        "Iniciativa (Des)",
+        "Intimidação (Car)",
+        "Luta (For)",
+        "Ofício (Int)",
+        "Percepção (Sab)",
+        "Pontaria (Des)",
+        "Reflexos (Des)"
+      ]
+    }
+  },
+  "abilities": {
+    "1": [
+      {
+        "name": "Ataque Disciplinado",
+        "type": "active",
+        "effects": {
+          "cost": "1 PM",
+          "description": "Rola dois dados no ataque e usa o melhor resultado",
+          "damage": {
+            "1": "+1d6",
+            "5": "+2d6",
+            "9": "+3d6",
+            "13": "+4d6",
+            "17": "+5d6"
+          }
+        }
+      }
+    ],
+    "3": [
+      {
+        "name": "Estratégia de Defesa",
+        "type": "choice",
+        "effects": {
+          "options": [
+            {
+              "name": "Infantaria Leve",
+              "effects": {
+                "defense_bonus": {
+                  "3": 2,
+                  "7": 4,
+                  "11": 6,
+                  "15": 8,
+                  "19": 10
+                },
+                "restrictions": [
+                  "Não pode estar imóvel",
+                  "Não pode usar armadura pesada"
+                ]
+              }
+            },
+            {
+              "name": "Tropa de Choque",
+              "effects": {
+                "proficiencies": [
+                  "Armaduras pesadas"
+                ],
+                "damage_reduction": {
+                  "3": 2,
+                  "7": 4,
+                  "11": 6,
+                  "15": 8,
+                  "19": 10
+                },
+                "requirements": [
+                  "Usar armadura pesada"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "6": [
+      {
+        "name": "Ataque Extra",
+        "type": "active",
+        "effects": {
+          "cost": "2 PM",
+          "description": "Realiza um ataque adicional ao usar a ação agredir",
+          "frequency": "Uma vez por rodada"
+        }
+      }
+    ],
+    "10": [
+      {
+        "name": "Supremacia Marcial",
+        "type": "passive",
+        "effects": {
+          "description": "Recebe 2 PM temporários ao derrotar inimigos",
+          "limit": "Máximo igual ao nível por cena"
+        }
+      }
+    ],
+    "20": [
+      {
+        "name": "Mestre da Batalha",
+        "type": "passive",
+        "effects": {
+          "description": "Dano do Ataque Disciplinado multiplica em crítico e cura PV igual ao dano extra"
+        }
+      }
+    ]
+  },
+  "powers": {
+    "progression": {
+      "start_level": 2,
+      "frequency": "every_level"
+    },
+    "list": [
+      {
+        "name": "Ambidestria",
+        "type": "combat",
+        "effects": {
+          "description": "Pode atacar com duas armas",
+          "requirements": [
+            "Uma arma deve ser leve"
+          ],
+          "penalty": "-2 em todos os ataques até próximo turno"
+        },
+        "prerequisites": {
+          "attributes": {
+            "Des": 2
+          }
+        }
+      },
+      {
+        "name": "Alabardeiro",
+        "type": "active",
+        "effects": {
+          "description": "Ataque adicional contra inimigo adjacente ao alvo",
+          "cost": "1 PM",
+          "requirements": [
+            "Usar arma alongada"
+          ]
+        }
+      },
+      {
+        "name": "Arqueiro",
+        "type": "passive",
+        "effects": {
+          "description": "Soma Sabedoria no dano com armas à distância",
+          "limit": "Limitado pelo nível"
+        },
+        "prerequisites": {
+          "attributes": {
+            "Sab": 1
+          }
+        }
+      },
+      {
+        "name": "Ataque Reflexo",
+        "type": "reaction",
+        "effects": {
+          "description": "Ataque contra alvo que fica desprevenido ou se move",
+          "cost": "1 PM",
+          "frequency": "Uma vez por alvo por rodada"
+        },
+        "prerequisites": {
+          "attributes": {
+            "Des": 1
+          }
+        }
+      },
+      {
+        "name": "Aumento de Atributo",
+        "type": "attribute",
+        "effects": {
+          "bonus": "+1 em um atributo",
+          "reselectable": "Uma vez por patamar por atributo"
+        }
+      },
+      {
+        "name": "Bater e Correr",
+        "type": "active",
+        "effects": {
+          "description": "Continua movimento após investida",
+          "cost_option": {
+            "cost": "2 PM",
+            "effect": "Ignora terreno difícil e penalidade de Defesa"
+          }
+        }
+      },
+      {
+        "name": "Destruidor",
+        "type": "passive",
+        "effects": {
+          "description": "Rerola 1 e 2 no dano com armas de duas mãos"
+        },
+        "prerequisites": {
+          "attributes": {
+            "For": 1
+          }
+        }
+      },
+      {
+        "name": "Disciplina Superior",
+        "type": "passive",
+        "effects": {
+          "description": "Aumenta dado de Ataque Disciplinado para d8"
+        },
+        "prerequisites": {
+          "level": 5
+        }
+      },
+      {
+        "name": "Equipamento Padrão",
+        "type": "passive",
+        "effects": {
+          "description": "Dobra benefícios de Especialização em Arma e Especialista em Armadura"
+        },
+        "prerequisites": {
+          "powers": [
+            "Especialista em Armadura",
+            "Especialização em Arma"
+          ]
+        }
+      },
+      {
+        "name": "Esgrimista",
+        "type": "passive",
+        "effects": {
+          "description": "Soma Inteligência no dano com armas leves ou ágeis",
+          "limit": "Limitado pelo nível"
+        },
+        "prerequisites": {
+          "attributes": {
+            "Int": 1
+          }
+        }
+      },
+      {
+        "name": "Especialista em Armadura",
+        "type": "passive",
+        "effects": {
+          "description": "Recebe +1 na Defesa e RD 1 com armadura específica",
+          "reselectable": true
+        }
+      },
+      {
+        "name": "Especialização em Arma",
+        "type": "passive",
+        "effects": {
+          "description": "Recebe +2 em rolagens de dano com arma específica",
+          "reselectable": true
+        }
+      },
+      {
+        "name": "Golpe de Raspão",
+        "type": "active",
+        "effects": {
+          "description": "Causa metade do dano ao errar ataque",
+          "cost": "2 PM",
+          "frequency": "Uma vez por rodada"
+        }
+      },
+      {
+        "name": "Golpe Demolidor",
+        "type": "active",
+        "effects": {
+          "description": "Ignora RD ao atacar objetos",
+          "cost": "2 PM"
+        }
+      },
+      {
+        "name": "Golpe Oportunista",
+        "type": "active",
+        "effects": {
+          "description": "Ataque desarmado extra após acertar",
+          "cost": "1 PM"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Luta"
+          ]
+        }
+      },
+      {
+        "name": "Ímpeto",
+        "type": "active",
+        "effects": {
+          "description": "Aumenta deslocamento em +6m",
+          "cost": "1 PM",
+          "duration": "1 rodada"
+        }
+      },
+      {
+        "name": "Lutador de Taverna",
+        "type": "passive",
+        "effects": {
+          "description": "Ataques desarmados causam 1d6 e podem atordoar",
+          "special": {
+            "cost": "2 PM",
+            "save": "Fortitude (CD For)",
+            "effect": "Atordoado por 1 rodada",
+            "frequency": "Uma vez por criatura por cena"
+          }
+        }
+      },
+      {
+        "name": "Mestre em Arma",
+        "type": "passive",
+        "effects": {
+          "description": "Aumenta dano em um passo e pode rerolar ataque",
+          "reroll_cost": "2 PM"
+        },
+        "prerequisites": {
+          "powers": [
+            "Especialização em Arma"
+          ],
+          "level": 12
+        }
+      },
+      {
+        "name": "Planejamento Marcial",
+        "type": "active",
+        "effects": {
+          "description": "Ganha poder temporário de soldado ou combate",
+          "cost": "3 PM",
+          "duration": "1 dia",
+          "frequency": "Uma vez por dia"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Guerra"
+          ],
+          "level": 10
+        }
+      },
+      {
+        "name": "Precisão Disciplinada",
+        "type": "active",
+        "effects": {
+          "description": "Melhora Ataque Disciplinado",
+          "cost": "1 PM",
+          "options": [
+            "Aumenta margem de ameaça em +2",
+            "Ignora 10 pontos de RD"
+          ]
+        }
+      },
+      {
+        "name": "Solidez",
+        "type": "passive",
+        "effects": {
+          "description": "Aplica bônus do escudo em testes de resistência"
+        }
+      },
+      {
+        "name": "Tornado de Dor",
+        "type": "active",
+        "effects": {
+          "description": "Ataque giratório contra todos adjacentes",
+          "cost": "2 PM",
+          "action": "Padrão",
+          "damage_bonus": "+2 por acerto"
+        },
+        "prerequisites": {
+          "level": 6
+        }
+      },
+      {
+        "name": "Valentão",
+        "type": "passive",
+        "effects": {
+          "description": "Bônus contra alvos em desvantagem",
+          "bonus": {
+            "attack": 2,
+            "damage": 2
+          },
+          "conditions": [
+            "Caído",
+            "Desprevenido",
+            "Flanqueado",
+            "Indefeso"
+          ]
+        }
+      }
+    ]
+  },
+  "advancement_table": {
+    "1": [
+      "Ataque disciplinado (+1d6)"
+    ],
+    "2": [
+      "Poder de soldado"
+    ],
+    "3": [
+      "Estratégia de defesa (Def +2/RD 2)",
+      "Poder de soldado"
+    ],
+    "4": [
+      "Poder de soldado"
+    ],
+    "5": [
+      "Ataque disciplinado (+2d6)",
+      "Poder de soldado"
+    ],
+    "6": [
+      "Ataque extra",
+      "Poder de soldado"
+    ],
+    "7": [
+      "Estratégia de defesa (Def +4/RD 4)",
+      "Poder de soldado"
+    ],
+    "8": [
+      "Poder de soldado"
+    ],
+    "9": [
+      "Ataque disciplinado (+3d6)",
+      "Poder de soldado"
+    ],
+    "10": [
+      "Poder de soldado"
+    ],
+    "11": [
+      "Estratégia de defesa (Def +6/RD 6)",
+      "Poder de soldado"
+    ],
+    "12": [
+      "Poder de soldado"
+    ],
+    "13": [
+      "Ataque disciplinado (+4d6)",
+      "Poder de soldado"
+    ],
+    "14": [
+      "Poder de soldado"
+    ],
+    "15": [
+      "Estratégia de defesa (Def +8/RD 8)",
+      "Poder de soldado"
+    ],
+    "16": [
+      "Poder de soldado"
+    ],
+    "17": [
+      "Ataque disciplinado (+5d6)",
+      "Poder de soldado"
+    ],
+    "18": [
+      "Poder de soldado"
+    ],
+    "19": [
+      "Estratégia de defesa (Def +10/RD 10)",
+      "Poder de soldado"
+    ],
+    "20": [
+      "Mestre da batalha",
+      "Poder de soldado"
+    ]
+  },
+  "role": {
+    "combat": "versatile",
+    "party": "front-line"
+  }
+}

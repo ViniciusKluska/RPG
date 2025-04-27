@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghanor RPG - Portal</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/home.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=MedievalSharp&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="assets/images/favicon.png">
+</head>
+<body class="home-body">
+  <div class="home-container">
+    <header class="home-header">
+      <div class="logo-container">
+        <img src="assets/images/Geradas/logo.png" alt="Ghanor RPG Logo" class="home-logo">
+        <h1>Ghanor RPG</h1>
+      </div>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="index.html" class="active">Início</a></li>
+          <li><a href="pages/criar-personagem.html">Criar Personagem</a></li>
+          <li><a href="pages/fichas.html">Minhas Fichas</a></li>
+          <li><a href="pages/regras.html">Regras</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="home-main">
+      <section class="hero-section">
+        <div class="hero-content">
+          <h2>Bem-vindo ao mundo de Ghanor</h2>
+          <p>Crie personagens, gerencie suas fichas e embarque em aventuras épicas!</p>
+          <div class="hero-buttons">
+            <a href="pages/criar-personagem.html" class="btn-primary">Criar Personagem</a>
+            <a href="pages/fichas.html" class="btn-secondary">Ver Minhas Fichas</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="assets/images/Geradas/hero-image.png" alt="Heróis de Ghanor">
+        </div>
+      </section>
+
+      <section class="login-section" id="login-section">
+        <div class="login-container">
+          <h3>Entrar no Portal</h3>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="username">Usuário:</label>
+              <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+              <label for="password">Senha:</label>
+              <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+              <label for="user-type">Tipo de Usuário:</label>
+              <select id="user-type" name="user-type">
+                <option value="player">Jogador</option>
+                <option value="dm">Mestre</option>
+              </select>
+            </div>
+            <div class="form-actions">
+              <button type="submit" class="btn-login">Entrar</button>
+              <button type="button" id="btn-register" class="btn-register">Registrar</button>
+            </div>
+          </form>
+          <div class="login-message" id="login-message"></div>
+        </div>
+      </section>
+
+      <section class="features-section">
+        <h3>Recursos do Portal</h3>
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📝</div>
+            <h4>Criação de Personagens</h4>
+            <p>Crie personagens com nossa ficha interativa seguindo todas as regras do sistema Ghanor RPG.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📋</div>
+            <h4>Gerenciamento de Fichas</h4>
+            <p>Salve, edite e organize todas as suas fichas de personagens em um só lugar.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🏰</div>
+            <h4>Ferramentas para Mestres</h4>
+            <p>Acesso a ferramentas especiais para mestres conduzirem suas campanhas com facilidade.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📚</div>
+            <h4>Regras e Referências</h4>
+            <p>Consulte as regras do jogo e tabelas de referência diretamente no portal.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="home-footer">
+      <div class="footer-content">
+        <p>&copy; 2023 Ghanor RPG - Todos os direitos reservados</p>
+        <div class="footer-links">
+          <a href="#">Sobre</a>
+          <a href="#">Contato</a>
+          <a href="#">Políticas</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="js/home.js"></script>
+</body>
+</html> 

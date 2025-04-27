@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Exibição de Raças</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            margin-top: 20px;
+            color: #555;
+        }
+        pre {
+            background-color: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow: auto;
+            max-height: 400px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .race-info {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+        }
+        .attributes {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .attribute {
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+        .positive {
+            color: green;
+        }
+        .negative {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Teste de Exibição de Raças</h1>
+        <div id="status">Dados de teste:</div>
+        <div id="races-container"></div>
+    </div>
+
+    <script>
+        // Dados de teste para simular o que seria carregado de races.json
+        window.racasInfo = {
+            "humano": {
+                "nome": "Humano",
+                "descricao": "Humanos são a raça mais populosa de Ghanor e dos reinos. Adaptáveis e versáteis, possuem potencial para se sobressair em qualquer área, o que os permitiu resistir aos momentos mais sombrios da história do mundo.",
+                "tracosFisicos": {
+                    "altura": "Variável",
+                    "compleicao": "Variável",
+                    "longevidade": "Até 90 anos",
+                    "aparencia": "Grande variedade na aparência"
+                },
+                "tracosCulturais": {
+                    "sociedade": "Diversificada, com diferentes costumes",
+                    "valores": ["Adaptabilidade", "Ambição", "Versatilidade"]
+                },
+                "bonusAtributos": {
+                    "flexivel": true
+                },
+                "habilidades": [
+                    "Versátil: Reflete a capacidade humana de se adaptar - Recebe 2 perícias: Qualquer perícia, mesmo fora da classe",
+                    "Ambição: Ganho de experiência aprimorado - +10% de experiência em todas as aventuras"
+                ],
+                "pericias": ["Qualquer perícia à escolha"],
+                "tamanho": "Médio",
+                "deslocamento": "9m"
+            },
+            "elfo": {
+                "nome": "Elfo",
+                "descricao": "Seres mágicos e ancestrais, elfos possuem uma história rica e antiga, marcada por grandes triunfos... E também por grandes tragédias, que deixaram feridas permanentes em sua sociedade.",
+                "tracosFisicos": {
+                    "altura": "Ligeiramente mais baixos que humanos",
+                    "compleicao": "Esguios e leves",
+                    "longevidade": "Até 300 anos",
+                    "aparencia": "Traços belos e delicados com ângulos suaves"
+                },
+                "tracosCulturais": {
+                    "sociedade": "Cidades em grandes florestas protegidas",
+                    "valores": ["Harmonia com a natureza", "Conhecimento místico", "Arte e beleza"]
+                },
+                "bonusAtributos": {
+                    "sabedoria": 2,
+                    "destreza": 1,
+                    "constituicao": -1
+                },
+                "habilidades": [
+                    "Armas da Floresta: A maestria élfica com o arco é lendária - +2 em rolagens de dano com arcos",
+                    "Magia Antiga: A conexão mística dos elfos com a natureza - +1 PM por nível",
+                    "Sentidos Élficos: Seus sentidos aguçados são resultado de séculos na natureza - Visão na penumbra e +2 em testes de Percepção"
+                ],
+                "pericias": ["Percepção", "Furtividade", "Misticismo", "Conhecimento (Natureza)"],
+                "tamanho": "Médio",
+                "deslocamento": "12m"
+            },
+            "anao": {
+                "nome": "Anão",
+                "descricao": "Habitantes das profundezas, anões são um povo antigo, de tradições tão rígidas quanto o aço que forjam. Exímios ferreiros, mineradores e guerreiros.",
+                "tracosFisicos": {
+                    "altura": "Baixos e atarracados",
+                    "compleicao": "Robustos e pesados",
+                    "longevidade": "Até 150 anos",
+                    "aparencia": "Longos cabelos e barbas adornados"
+                },
+                "tracosCulturais": {
+                    "sociedade": "Cidadelas subterrâneas",
+                    "valores": ["Trabalho e dedicação", "Perfeição técnica", "Coragem"]
+                },
+                "bonusAtributos": {
+                    "constituicao": 2,
+                    "inteligencia": 1,
+                    "carisma": -1
+                },
+                "habilidades": [
+                    "Busca pela Perfeição: Reflete a dedicação anã ao trabalho - +2 em testes de ofício",
+                    "Devagar e Sempre: Mesmo carregando peso ou usando armadura pesada - Deslocamento 6m (Não reduzido por armadura ou carga)",
+                    "Moldado nas Rochas: Séculos vivendo nas profundezas - Visão no escuro, +1 PV por nível"
+                ],
+                "pericias": ["Ofício", "Atletismo", "Conhecimento (Subterrâneo)"],
+                "tamanho": "Médio",
+                "deslocamento": "6m"
+            }
+        };
+
+        // Exibir cada raça
+        function displayRaces() {
+            const container = document.getElementById('races-container');
+            const status = document.getElementById('status');
+            
+            // Atualizar status
+            status.textContent = `${Object.keys(window.racasInfo).length} raças carregadas (dados de teste)`;
+            
+            // Exibir cada raça
+            Object.entries(window.racasInfo).forEach(([key, race]) => {
+                const raceElement = document.createElement('div');
+                raceElement.className = 'race-info';
+                
+                // Título da raça
+                const title = document.createElement('h2');
+                title.textContent = race.nome;
+                raceElement.appendChild(title);
+                
+                // Descrição
+                const description = document.createElement('p');
+                description.textContent = race.descricao;
+                raceElement.appendChild(description);
+                
+                // Bônus de atributos
+                const attrTitle = document.createElement('h3');
+                attrTitle.textContent = 'Bônus de Atributos';
+                raceElement.appendChild(attrTitle);
+                
+                const attributes = document.createElement('div');
+                attributes.className = 'attributes';
+                
+                if (race.bonusAtributos.flexivel) {
+                    const flexAttr = document.createElement('div');
+                    flexAttr.className = 'attribute';
+                    flexAttr.textContent = 'Bônus flexível: escolha de atributos';
+                    attributes.appendChild(flexAttr);
+                } else {
+                    // Atributos fixos
+                    Object.entries(race.bonusAtributos).forEach(([attr, value]) => {
+                        if (attr !== 'flexivel') {
+                            const attrElement = document.createElement('div');
+                            attrElement.className = `attribute ${value > 0 ? 'positive' : 'negative'}`;
+                            
+                            // Mapear códigos de atributos para nomes mais legíveis
+                            const attrNames = {
+                                'forca': 'Força',
+                                'destreza': 'Destreza',
+                                'constituicao': 'Constituição',
+                                'inteligencia': 'Inteligência',
+                                'sabedoria': 'Sabedoria',
+                                'carisma': 'Carisma'
+                            };
+                            
+                            attrElement.textContent = `${attrNames[attr] || attr}: ${value > 0 ? '+' : ''}${value}`;
+                            attributes.appendChild(attrElement);
+                        }
+                    });
+                }
+                
+                raceElement.appendChild(attributes);
+                
+                // Habilidades raciais
+                const abilitiesTitle = document.createElement('h3');
+                abilitiesTitle.textContent = 'Habilidades Raciais';
+                raceElement.appendChild(abilitiesTitle);
+                
+                const abilities = document.createElement('ul');
+                race.habilidades.forEach(ability => {
+                    const abilityItem = document.createElement('li');
+                    abilityItem.textContent = ability;
+                    abilities.appendChild(abilityItem);
+                });
+                
+                raceElement.appendChild(abilities);
+                
+                // Dados físicos e culturais
+                const physicalTitle = document.createElement('h3');
+                physicalTitle.textContent = 'Traços Físicos';
+                raceElement.appendChild(physicalTitle);
+                
+                const physical = document.createElement('ul');
+                Object.entries(race.tracosFisicos).forEach(([trait, value]) => {
+                    const traitItem = document.createElement('li');
+                    const traitName = trait.charAt(0).toUpperCase() + trait.slice(1);
+                    traitItem.textContent = `${traitName}: ${value}`;
+                    physical.appendChild(traitItem);
+                });
+                
+                raceElement.appendChild(physical);
+                
+                // Informações de tamanho e deslocamento
+                const sizeTitle = document.createElement('h3');
+                sizeTitle.textContent = 'Tamanho e Deslocamento';
+                raceElement.appendChild(sizeTitle);
+                
+                const sizeInfo = document.createElement('p');
+                sizeInfo.textContent = `Tamanho: ${race.tamanho}, Deslocamento: ${race.deslocamento}`;
+                raceElement.appendChild(sizeInfo);
+                
+                container.appendChild(raceElement);
+            });
+        }
+
+        // Iniciar exibição quando o documento estiver carregado
+        document.addEventListener('DOMContentLoaded', displayRaces);
+    </script>
+</body>
+</html> 

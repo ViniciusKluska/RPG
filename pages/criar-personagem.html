@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Personagem - Ghanor RPG</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=MedievalSharp&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <div class="header-left">
+        <a href="../index.html" class="back-link">
+          <span class="back-arrow">←</span> Voltar
+        </a>
+      </div>
+      <div class="header-center">
+        <h1>Criar Novo Personagem</h1>
+      </div>
+      <div class="header-right">
+        <div class="user-info" id="user-info">
+          <!-- Preenchido via JavaScript -->
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <form class="sheet" id="ficha-ghanor">
+        <!-- Seção Cabeçalho -->
+        <header class="sheet__header">
+          <div class="header-bg"></div>
+          <div class="header-content">
+            <div class="character-header-grid">
+              <div class="field field--personagem">
+                <label for="personagem">Personagem:</label>
+                <input type="text" id="personagem" name="personagem" placeholder="Nome do personagem">
+              </div>
+              <div class="field field--jogador">
+                <label for="jogador">Jogador:</label>
+                <input type="text" id="jogador" name="jogador" placeholder="Seu nome">
+              </div>
+              <div class="field field--raca">
+                <label for="raca">Raça:</label>
+                <select id="raca" name="raca" class="styled-select">
+                  <option value="">Selecione uma raça</option>
+                  <option value="humano">Humano</option>
+                  <option value="anao">Anão</option>
+                  <option value="elfo">Elfo</option>
+                  <option value="meio-elfo">Meio-Elfo</option>
+                  <option value="hobgoblin">Hobgoblin</option>
+                  <option value="gigante">Gigante</option>
+                  <option value="aberrante">Aberrante</option>
+                </select>
+              </div>
+              <div class="field field--origem">
+                <label for="origem">Origem:</label>
+                <input type="text" id="origem" name="origem" placeholder="Origem do personagem">
+              </div>
+              <div class="field field--classe">
+                <label for="classe">Classe:</label>
+                <select id="classe" name="classe" class="styled-select">
+                  <option value="">Selecione uma classe</option>
+                  <option value="guerreiro">Guerreiro</option>
+                  <option value="mago">Mago</option>
+                  <option value="clerigo">Clérigo</option>
+                  <option value="ladino">Ladino</option>
+                  <option value="bardo">Bardo</option>
+                  <option value="druida">Druida</option>
+                  <option value="paladino">Paladino</option>
+                  <option value="ranger">Ranger</option>
+                </select>
+              </div>
+              <div class="field field--nivel">
+                <label for="nivel">Nível:</label>
+                <input type="number" id="nivel" name="nivel" min="1" value="1" class="nivel-input">
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Seção Atributos -->
+        <section class="sheet__attributes">
+          <div class="attribute attribute--forca">
+            <label for="forca">Força</label>
+            <input type="number" id="forca" name="forca" min="0" class="attribute-value">
+            <div class="attribute-mod" id="forca-mod">+0</div>
+          </div>
+          <div class="attribute attribute--destreza">
+            <label for="destreza">Destreza</label>
+            <input type="number" id="destreza" name="destreza" min="0" class="attribute-value">
+            <div class="attribute-mod" id="destreza-mod">+0</div>
+          </div>
+          <div class="attribute attribute--constituicao">
+            <label for="constituicao">Constituição</label>
+            <input type="number" id="constituicao" name="constituicao" min="0" class="attribute-value">
+            <div class="attribute-mod" id="constituicao-mod">+0</div>
+          </div>
+          <div class="attribute attribute--inteligencia">
+            <label for="inteligencia">Inteligência</label>
+            <input type="number" id="inteligencia" name="inteligencia" min="0" class="attribute-value">
+            <div class="attribute-mod" id="inteligencia-mod">+0</div>
+          </div>
+          <div class="attribute attribute--sabedoria">
+            <label for="sabedoria">Sabedoria</label>
+            <input type="number" id="sabedoria" name="sabedoria" min="0" class="attribute-value">
+            <div class="attribute-mod" id="sabedoria-mod">+0</div>
+          </div>
+          <div class="attribute attribute--carisma">
+            <label for="carisma">Carisma</label>
+            <input type="number" id="carisma" name="carisma" min="0" class="attribute-value">
+            <div class="attribute-mod" id="carisma-mod">+0</div>
+          </div>
+        </section>
+
+        <!-- Informações da Raça e Classe -->
+        <section class="sheet__race-class-info">
+          <div class="info-columns">
+            <div class="info-column race-info">
+              <h3 class="info-title">Informações da Raça</h3>
+              <div id="race-details" class="info-content">
+                <p class="select-prompt">Selecione uma raça para ver suas informações</p>
+              </div>
+            </div>
+            <div class="info-column class-info">
+              <h3 class="info-title">Informações da Classe</h3>
+              <div id="class-details" class="info-content">
+                <p class="select-prompt">Selecione uma classe para ver suas informações</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Status -->
+        <section class="sheet__status">
+          <div class="status-row">
+            <div class="status-item">
+              <label for="pv-total">PV Total</label>
+              <input type="number" id="pv-total" name="pv-total" min="0">
+            </div>
+            <div class="status-item">
+              <label for="pv-atual">PV Atual</label>
+              <input type="number" id="pv-atual" name="pv-atual" min="0">
+            </div>
+            <div class="status-item">
+              <label for="pm-total">PM Total</label>
+              <input type="number" id="pm-total" name="pm-total" min="0">
+            </div>
+            <div class="status-item">
+              <label for="pm-atual">PM Atual</label>
+              <input type="number" id="pm-atual" name="pm-atual" min="0">
+            </div>
+          </div>
+        </section>
+
+        <!-- Seção Perícias -->
+        <section class="sheet__skills">
+          <div class="skills-header">
+            <div class="skill-name">Perícia</div>
+            <div class="skill-attr">Atrib</div>
+            <div class="skill-total">Total</div>
+            <div class="skill-attr-mod">Mod</div>
+            <div class="skill-half">1/2 Nv</div>
+            <div class="skill-train">Trein</div>
+            <div class="skill-other">Outro</div>
+          </div>
+          
+          <div class="skill">
+            <div class="skill-name">Acrobacia</div>
+            <div class="skill-attr">DES</div>
+            <input type="number" id="acrobacia-total" name="acrobacia-total" readonly class="skill-total">
+            <input type="number" id="acrobacia-mod" name="acrobacia-mod" readonly class="skill-attr-mod">
+            <input type="number" id="acrobacia-half" name="acrobacia-half" class="skill-half">
+            <input type="checkbox" id="acrobacia-train" name="acrobacia-train" class="skill-train">
+            <input type="number" id="acrobacia-other" name="acrobacia-other" class="skill-other">
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Adestramento</div>
+            <div class="skill-attr">CAR</div>
+            <input type="number" id="adestramento-total" name="adestramento-total" readonly class="skill-total">
+            <input type="number" id="adestramento-mod" name="adestramento-mod" readonly class="skill-attr-mod">
+            <input type="number" id="adestramento-half" name="adestramento-half" class="skill-half">
+            <input type="checkbox" id="adestramento-train" name="adestramento-train" class="skill-train">
+            <input type="number" id="adestramento-other" name="adestramento-other" class="skill-other">
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Atletismo</div>
+            <div class="skill-attr">FOR</div>
+            <input type="number" id="atletismo-total" name="atletismo-total" readonly class="skill-total">
+            <input type="number" id="atletismo-mod" name="atletismo-mod" readonly class="skill-attr-mod">
+            <input type="number" id="atletismo-half" name="atletismo-half" class="skill-half">
+            <input type="checkbox" id="atletismo-train" name="atletismo-train" class="skill-train">
+            <input type="number" id="atletismo-other" name="atletismo-other" class="skill-other">
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Atuação</div>
+            <div class="skill-attr">CAR</div>
+            <input type="number" id="atuacao-total" name="atuacao-total" readonly class="skill-total">
+            <input type="number" id="atuacao-mod" name="atuacao-mod" readonly class="skill-attr-mod">
+            <input type="number" id="atuacao-half" name="atuacao-half" class="skill-half">
+            <input type="checkbox" id="atuacao-train" name="atuacao-train" class="skill-train">
+            <input type="number" id="atuacao-other" name="atuacao-other" class="skill-other">
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Cavalgar</div>
+            <div class="skill-attr">DES</div>
+            <input type="number" id="cavalgar-total" name="cavalgar-total" readonly class="skill-total">
+            <input type="number" id="cavalgar-mod" name="cavalgar-mod" readonly class="skill-attr-mod">
+            <input type="number" id="cavalgar-half" name="cavalgar-half" class="skill-half">
+            <input type="checkbox" id="cavalgar-train" name="cavalgar-train" class="skill-train">
+            <input type="number" id="cavalgar-other" name="cavalgar-other" class="skill-other">
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Conhecimento</div>
+            <div class="skill-attr">INT</div>
+            <input type="number" id="conhecimento-total" name="conhecimento-total" readonly class="skill-total">
+            <input type="number" id="conhecimento-mod" name="conhecimento-mod" readonly class="skill-attr-mod">
+            <input type="number" id="conhecimento-half" name="conhecimento-half" class="skill-half">
+            <input type="checkbox" id="conhecimento-train" name="conhecimento-train" class="skill-train">
+            <input type="number" id="conhecimento-other" name="conhecimento-other" class="skill-other">
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Cura</div>
+            <div class="skill-attr">SAB</div>
+            <input type="number" id="cura-total" name="cura-total" readonly class="skill-total">
+            <input type="number" id="cura-mod" name="cura-mod" readonly class="skill-attr-mod">
+            <input type="number" id="cura-half" name="cura-half" class="skill-half">
+            <input type="checkbox" id="cura-train" name="cura-train" class="skill-train">
+            <input type="number" id="cura-other" name="cura-other" class="skill-other">
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Diplomacia</div>
+            <div class="skill-attr">CAR</div>
+            <input type="number" id="diplomacia-total" name="diplomacia-total" readonly class="skill-total">
+            <input type="number" id="diplomacia-mod" name="diplomacia-mod" readonly class="skill-attr-mod">
+            <input type="number" id="diplomacia-half" name="diplomacia-half" class="skill-half">
+            <input type="checkbox" id="diplomacia-train" name="diplomacia-train" class="skill-train">
+            <input type="number" id="diplomacia-other" name="diplomacia-other" class="skill-other">
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Furtividade</div>
+            <div class="skill-attr">DES</div>
+            <input type="number" id="furtividade-total" name="furtividade-total" readonly class="skill-total">
+            <input type="number" id="furtividade-mod" name="furtividade-mod" readonly class="skill-attr-mod">
+            <input type="number" id="furtividade-half" name="furtividade-half" class="skill-half">
+            <input type="checkbox" id="furtividade-train" name="furtividade-train" class="skill-train">
+            <input type="number" id="furtividade-other" name="furtividade-other" class="skill-other">
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Intuição</div>
+            <div class="skill-attr">SAB</div>
+            <input type="number" id="intuicao-total" name="intuicao-total" readonly class="skill-total">
+            <input type="number" id="intuicao-mod" name="intuicao-mod" readonly class="skill-attr-mod">
+            <input type="number" id="intuicao-half" name="intuicao-half" class="skill-half">
+            <input type="checkbox" id="intuicao-train" name="intuicao-train" class="skill-train">
+            <input type="number" id="intuicao-other" name="intuicao-other" class="skill-other">
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Intimidação</div>
+            <div class="skill-attr">CAR</div>
+            <input type="number" id="intimidacao-total" name="intimidacao-total" readonly class="skill-total">
+            <input type="number" id="intimidacao-mod" name="intimidacao-mod" readonly class="skill-attr-mod">
+            <input type="number" id="intimidacao-half" name="intimidacao-half" class="skill-half">
+            <input type="checkbox" id="intimidacao-train" name="intimidacao-train" class="skill-train">
+            <input type="number" id="intimidacao-other" name="intimidacao-other" class="skill-other">
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Percepção</div>
+            <div class="skill-attr">SAB</div>
+            <input type="number" id="percepcao-total" name="percepcao-total" readonly class="skill-total">
+            <input type="number" id="percepcao-mod" name="percepcao-mod" readonly class="skill-attr-mod">
+            <input type="number" id="percepcao-half" name="percepcao-half" class="skill-half">
+            <input type="checkbox" id="percepcao-train" name="percepcao-train" class="skill-train">
+            <input type="number" id="percepcao-other" name="percepcao-other" class="skill-other">
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Reflexos</div>
+            <div class="skill-attr">DES</div>
+            <input type="number" id="reflexos-total" name="reflexos-total" readonly class="skill-total">
+            <input type="number" id="reflexos-mod" name="reflexos-mod" readonly class="skill-attr-mod">
+            <input type="number" id="reflexos-half" name="reflexos-half" class="skill-half">
+            <input type="checkbox" id="reflexos-train" name="reflexos-train" class="skill-train">
+            <input type="number" id="reflexos-other" name="reflexos-other" class="skill-other">
+          </div>
+
+          <div class="skill">
+            <div class="skill-name">Sobrevivência</div>
+            <div class="skill-attr">SAB</div>
+            <input type="number" id="sobrevivencia-total" name="sobrevivencia-total" readonly class="skill-total">
+            <input type="number" id="sobrevivencia-mod" name="sobrevivencia-mod" readonly class="skill-attr-mod">
+            <input type="number" id="sobrevivencia-half" name="sobrevivencia-half" class="skill-half">
+            <input type="checkbox" id="sobrevivencia-train" name="sobrevivencia-train" class="skill-train">
+            <input type="number" id="sobrevivencia-other" name="sobrevivencia-other" class="skill-other">
+          </div>
+        </section>
+
+        <!-- Seção Combate -->
+        <section class="sheet__combat">
+          <div class="combat-header">Ataques</div>
+          <div class="attack-grid">
+            <div class="attack-label">Arma</div>
+            <div class="attack-label">Bônus</div>
+            <div class="attack-label">Dano</div>
+            <div class="attack-label">Crítico</div>
+            <div class="attack-label">Tipo</div>
+            <div class="attack-label">Alcance</div>
+            
+            <input type="text" name="arma1" class="attack-weapon">
+            <input type="text" name="bonus1" class="attack-bonus">
+            <input type="text" name="dano1" class="attack-damage">
+            <input type="text" name="critico1" class="attack-crit">
+            <input type="text" name="tipo1" class="attack-type">
+            <input type="text" name="alcance1" class="attack-range">
+            
+            <input type="text" name="arma2" class="attack-weapon">
+            <input type="text" name="bonus2" class="attack-bonus">
+            <input type="text" name="dano2" class="attack-damage">
+            <input type="text" name="critico2" class="attack-crit">
+            <input type="text" name="tipo2" class="attack-type">
+            <input type="text" name="alcance2" class="attack-range">
+            
+            <input type="text" name="arma3" class="attack-weapon">
+            <input type="text" name="bonus3" class="attack-bonus">
+            <input type="text" name="dano3" class="attack-damage">
+            <input type="text" name="critico3" class="attack-crit">
+            <input type="text" name="tipo3" class="attack-type">
+            <input type="text" name="alcance3" class="attack-range">
+          </div>
+        </section>
+
+        <!-- Equipamento -->
+        <section class="sheet__equipment">
+          <div class="equipment-header">Equipamento</div>
+          <textarea id="equipamento" name="equipamento" rows="6"></textarea>
+        </section>
+
+        <!-- Magias -->
+        <section class="sheet__spells">
+          <div class="spells-header">Magias</div>
+          <textarea id="magias" name="magias" rows="6"></textarea>
+        </section>
+
+        <div class="actions">
+          <button type="button" id="btn-save">Salvar Personagem</button>
+          <button type="button" id="btn-print">Imprimir / PDF</button>
+          <button type="button" id="btn-reset">Limpar Ficha</button>
+        </div>
+      </form>
+    </main>
+
+    <footer class="page-footer">
+      <p>&copy; 2023 Ghanor RPG - Todos os direitos reservados</p>
+    </footer>
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/racas.js"></script>
+  <script src="../js/racas/humano.js"></script>
+  <script src="../js/racas/anao.js"></script>
+  <script src="../js/racas/elfo.js"></script>
+  <script src="../js/racas/meio-elfo.js"></script>
+  <script src="../js/racas/hobgoblin.js"></script>
+  <script src="../js/racas/gigante.js"></script>
+  <script src="../js/racas/aberrante.js"></script>
+  <script src="../js/classes.js"></script>
+  <script src="../js/classes/mago.js"></script>
+  <script src="../js/classes/bardo.js"></script>
+  <script src="../js/classes/barbaro.js"></script>
+  <script src="../js/classes/bucaneiro.js"></script>
+  <script src="../js/classes/cacador.js"></script>
+  <script src="../js/classes/cavaleiro.js"></script>
+  <script src="../js/classes/clerigo.js"></script>
+  <script src="../js/classes/druida.js"></script>
+  <script src="../js/classes/ladino.js"></script>
+  <script src="../js/classes/nobre.js"></script>
+  <script src="../js/classes/soldado.js"></script>
+  <script src="../js/character.js"></script>
+</body>
+</html> 

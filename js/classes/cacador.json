@@ -1,0 +1,594 @@
+{
+  "id": "cacador",
+  "name": "Caçador",
+  "description": "Um explorador astuto, o caçador é um especialista em sobrevivência nos ermos, habilidoso, capaz de sobreviver às regiões mais inóspitas e encontrar — e abater — as bestas mais ferozes.",
+  "flavor_text": "Exploradores natos, muitos caçadores se dedicam a desbravar regiões ermas e descobrir ruínas esquecidas. Outros se especializam em combater criaturas específicas, de monstros a bandidos. E há aqueles que se unem a exércitos, regulares ou mercenários, atuando como batedores, guias e espiões. A maioria dos caçadores, entretanto, navega entre todas estas opções, empregando suas habilidades nas mais variadas missões e tarefas em terreno selvagem.",
+  "cultural_text": "Assim como as criaturas com quem partilham os ermos, caçadores precisam ser rápidos, furtivos e certeiros. Muitos favorecem equipamentos leves, como armas ágeis ou de ataque à distância. Graças ao seu treinamento, conseguem se mover com velocidade em terreno selvagem, encontrando trilhas e caminhos rápidos e seguros, e sabem como ler nos sutis sinais da natureza os indícios de ameaças, perigos e esconderijos. Para um caçador, as florestas, colinas e outras regiões selvagens são um lar, e muitos se sentem mais à vontade nesses territórios do que na suposta segurança das cidades e da civilização.",
+  "base_stats": {
+    "hit_points": {
+      "base": 16,
+      "per_level": 4,
+      "bonus": "Constituição"
+    },
+    "mana_points": {
+      "per_level": 4
+    }
+  },
+  "proficiencies": {
+    "weapons": [
+      "Armas marciais"
+    ],
+    "armor": [
+      "Escudos"
+    ]
+  },
+  "skills": {
+    "choices_fixed": {
+      "amount": 1,
+      "from": [
+        "Luta (For)",
+        "Pontaria (Des)"
+      ]
+    },
+    "fixed": [
+      "Sobrevivência (Sab)"
+    ],
+    "choices": {
+      "amount": 6,
+      "from": [
+        "Adestramento (Car)",
+        "Atletismo (For)",
+        "Cavalgar (Des)",
+        "Cura (Sab)",
+        "Fortitude (Con)",
+        "Furtividade (Des)",
+        "Iniciativa (Des)",
+        "Investigação (Int)",
+        "Luta (For)",
+        "Ofício (Int)",
+        "Percepção (Sab)",
+        "Pontaria (Des)",
+        "Reflexos (Des)"
+      ]
+    }
+  },
+  "abilities": {
+    "1": [
+      {
+        "name": "Marca da Presa",
+        "type": "active",
+        "cost": {
+          "action": "movimento",
+          "mana": 1
+        },
+        "effects": {
+          "description": "Analisa uma criatura em alcance curto",
+          "bonus": {
+            "damage": "1d4",
+            "scaling": {
+              "every": 4,
+              "cost": "+1 PM",
+              "dice": [
+                "1d4",
+                "1d8",
+                "1d12",
+                "2d8",
+                "2d10"
+              ]
+            }
+          },
+          "duration": "cena"
+        }
+      },
+      {
+        "name": "Rastreador",
+        "type": "passive",
+        "effects": {
+          "skill_bonus": {
+            "sobrevivencia": 2
+          },
+          "special": "Pode se mover com deslocamento normal enquanto rastreia"
+        }
+      }
+    ],
+    "3": [
+      {
+        "name": "Explorador",
+        "type": "passive",
+        "effects": {
+          "description": "Escolhe um tipo de terreno para receber bônus",
+          "terrain_types": [
+            "Ártico",
+            "Colina",
+            "Deserto",
+            "Floresta",
+            "Montanha",
+            "Pântano",
+            "Planície",
+            "Subterrâneo",
+            "Urbano"
+          ],
+          "bonuses": {
+            "defense": "Sabedoria (mínimo +1)",
+            "skills": [
+              "Acrobacia",
+              "Atletismo",
+              "Furtividade",
+              "Percepção",
+              "Sobrevivência"
+            ]
+          },
+          "scaling": {
+            "every": 4,
+            "options": [
+              "Novo tipo de terreno",
+              "Aumenta bônus em +2 em terreno já escolhido"
+            ]
+          }
+        }
+      }
+    ],
+    "5": [
+      {
+        "name": "Caminho do Explorador",
+        "type": "passive",
+        "effects": {
+          "description": "Ignora redução de deslocamento em terrenos difíceis",
+          "tracking_dc": "+10 para rastrear você",
+          "restriction": "Apenas em terrenos com Explorador"
+        }
+      }
+    ],
+    "20": [
+      {
+        "name": "Mestre Caçador",
+        "type": "passive",
+        "effects": {
+          "description": "Marca da Presa como ação livre",
+          "special": {
+            "cost": "5 PM",
+            "effect": "Aumenta margem de ameaça em +2",
+            "trigger": "Reduzir alvo marcado a 0 PV",
+            "reward": "Recupera 5 PM"
+          }
+        }
+      }
+    ]
+  },
+  "powers": {
+    "progression": {
+      "start_level": 2,
+      "frequency": "every_level"
+    },
+    "trap_rules": {
+      "requirements": [
+        "Preparar armadilha gasta ação completa e 3 PM",
+        "Afeta área de 3m de lado adjacente",
+        "Acionada pela primeira criatura que entrar na área",
+        "Pode ser detectada com Investigação (CD Sab)",
+        "Pode receber veneno como uma arma",
+        "Usa materiais naturais do ambiente"
+      ]
+    },
+    "list": [
+      {
+        "name": "Ambidestria",
+        "type": "combat",
+        "effects": {
+          "description": "Pode fazer dois ataques com duas armas",
+          "penalty": -2,
+          "requirements": [
+            "Uma arma deve ser leve"
+          ],
+          "duration": "Até próximo turno"
+        },
+        "prerequisites": {
+          "attributes": {
+            "DES": 2
+          }
+        }
+      },
+      {
+        "name": "Armadilha: Arataca",
+        "type": "trap",
+        "effects": {
+          "damage": "2d6 perfuração",
+          "condition": "Agarrado",
+          "escape": {
+            "action": "padrão",
+            "test": "Força ou Acrobacia (CD Sab)"
+          }
+        }
+      },
+      {
+        "name": "Armadilha: Espinhos",
+        "type": "trap",
+        "effects": {
+          "damage": "6d6 perfuração",
+          "save": {
+            "type": "Reflexos",
+            "cd": "Sabedoria",
+            "effect": "Metade do dano"
+          }
+        }
+      },
+      {
+        "name": "Armadilha: Laço",
+        "type": "trap",
+        "effects": {
+          "save": {
+            "type": "Reflexos",
+            "cd": "Sabedoria",
+            "success": "Caído",
+            "failure": "Agarrado"
+          },
+          "escape": {
+            "action": "padrão",
+            "test": "Força ou Acrobacia (CD Sab)"
+          }
+        }
+      },
+      {
+        "name": "Armadilha: Rede",
+        "type": "trap",
+        "effects": {
+          "condition": "Enredado",
+          "area": "Terreno difícil",
+          "escape": {
+            "action": "padrão",
+            "test": "Força ou Acrobacia (CD 25)"
+          },
+          "special": "Escolhe quantidade de alvos para ativação"
+        }
+      },
+      {
+        "name": "Armadilheiro",
+        "type": "trap_enhancement",
+        "effects": {
+          "bonus": {
+            "damage": "Sabedoria",
+            "cd": "Sabedoria"
+          }
+        },
+        "prerequisites": {
+          "powers": [
+            "any_trap"
+          ],
+          "level": 5
+        }
+      },
+      {
+        "name": "Arqueiro",
+        "type": "combat",
+        "effects": {
+          "description": "Soma Sabedoria no dano com armas à distância",
+          "limit": "Nível"
+        },
+        "prerequisites": {
+          "attributes": {
+            "SAB": 1
+          }
+        }
+      },
+      {
+        "name": "Aumento de Atributo",
+        "type": "attribute",
+        "effects": {
+          "bonus": "+1 em um atributo",
+          "reselectable": "Uma vez por patamar por atributo"
+        }
+      },
+      {
+        "name": "Bote",
+        "type": "combat",
+        "cost": "1 PM",
+        "effects": {
+          "description": "Ataque adicional com arma secundária durante investida"
+        },
+        "prerequisites": {
+          "powers": [
+            "Ambidestria"
+          ],
+          "level": 6
+        }
+      },
+      {
+        "name": "Camuflagem",
+        "type": "active",
+        "cost": "2 PM",
+        "effects": {
+          "description": "Pode se esconder sem cobertura"
+        },
+        "prerequisites": {
+          "level": 6
+        }
+      },
+      {
+        "name": "Chuva de Lâminas",
+        "type": "combat",
+        "cost": "2 PM",
+        "effects": {
+          "description": "Ataque adicional com arma primária ao usar Ambidestria"
+        },
+        "prerequisites": {
+          "attributes": {
+            "DES": 4
+          },
+          "powers": [
+            "Ambidestria"
+          ],
+          "level": 12
+        }
+      },
+      {
+        "name": "Companheiro Animal",
+        "type": "companion",
+        "effects": {
+          "description": "Recebe um companheiro animal",
+          "reference": "Veja o quadro na página 47"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Adestramento"
+          ]
+        }
+      },
+      {
+        "name": "Elo com a Natureza",
+        "type": "magic",
+        "effects": {
+          "mana_bonus": "Sabedoria",
+          "spell": "Caminhos da Natureza",
+          "key_attribute": "Sabedoria"
+        },
+        "prerequisites": {
+          "attributes": {
+            "SAB": 1
+          },
+          "level": 3
+        }
+      },
+      {
+        "name": "Emboscar",
+        "type": "active",
+        "cost": "2 PM",
+        "effects": {
+          "description": "Ação padrão adicional na primeira rodada",
+          "frequency": "Uma vez por combate"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Furtividade"
+          ]
+        }
+      },
+      {
+        "name": "Empatia Selvagem",
+        "type": "social",
+        "effects": {
+          "description": "Pode se comunicar com animais",
+          "special": "Usa Adestramento para mudar atitude e pedir favores"
+        }
+      },
+      {
+        "name": "Ervas Curativas",
+        "type": "healing",
+        "effects": {
+          "action": "completa",
+          "cost": "X PM (limitado por Sabedoria)",
+          "healing": "2d6 PV por PM",
+          "remove": "Condição envenenado",
+          "frequency": "Uma vez por dia por criatura"
+        }
+      },
+      {
+        "name": "Escaramuça",
+        "type": "combat",
+        "effects": {
+          "trigger": "Mover 6m ou mais",
+          "bonus": {
+            "defense": 2,
+            "reflex": 2,
+            "damage": "1d8"
+          },
+          "duration": "Até início do próximo turno",
+          "restrictions": [
+            "Sem armadura pesada"
+          ]
+        },
+        "prerequisites": {
+          "attributes": {
+            "DES": 2
+          },
+          "level": 6
+        }
+      },
+      {
+        "name": "Escaramuça Superior",
+        "type": "combat",
+        "effects": {
+          "replaces": "Escaramuça",
+          "bonus": {
+            "defense": 5,
+            "reflex": 5,
+            "damage": "1d12"
+          }
+        },
+        "prerequisites": {
+          "powers": [
+            "Escaramuça"
+          ],
+          "level": 12
+        }
+      },
+      {
+        "name": "Espreitar",
+        "type": "enhancement",
+        "effects": {
+          "description": "Bônus em testes de perícia contra alvo da Marca da Presa",
+          "bonus": {
+            "base": 1,
+            "scaling": {
+              "per_pm": 1,
+              "special": "Dobra com Inimigo"
+            }
+          }
+        }
+      },
+      {
+        "name": "Ímpeto",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "movement": "+6m por uma rodada"
+        }
+      },
+      {
+        "name": "Inimigo de (Criatura)",
+        "type": "specialization",
+        "effects": {
+          "description": "Dobra dados de Marca da Presa contra tipo escolhido",
+          "options": [
+            "Animal",
+            "Construto",
+            "Espírito",
+            "Monstro",
+            "Morto-vivo",
+            "Duas raças humanoides"
+          ],
+          "reselectable": "Pode escolher para tipos diferentes"
+        }
+      },
+      {
+        "name": "Mestre Armadilheiro",
+        "type": "trap_enhancement",
+        "effects": {
+          "cd_bonus": 2,
+          "special": {
+            "action": "completa",
+            "cost": "5 PM",
+            "effect": "Prepara duas armadilhas"
+          }
+        },
+        "prerequisites": {
+          "powers": [
+            "Armadilheiro",
+            "two_traps"
+          ]
+        }
+      },
+      {
+        "name": "Olho do Falcão",
+        "type": "enhancement",
+        "effects": {
+          "description": "Pode usar Marca da Presa em alcance longo"
+        }
+      },
+      {
+        "name": "Ponto Fraco",
+        "type": "combat",
+        "effects": {
+          "description": "Aumenta margem de ameaça contra alvo da Marca da Presa",
+          "bonus": {
+            "threat_range": 2,
+            "special": "Dobra com Inimigo"
+          }
+        }
+      },
+      {
+        "name": "Tiro em Linha",
+        "type": "combat",
+        "cost": "1 PM",
+        "effects": {
+          "trigger": "Reduzir alvo a 0 PV com arma de disparo",
+          "effect": "Ataque adicional contra criatura atrás do alvo",
+          "special": "Usa mesma munição"
+        },
+        "prerequisites": {
+          "powers": [
+            "Arqueiro"
+          ]
+        }
+      }
+    ]
+  },
+  "advancement_table": {
+    "1": [
+      "Marca da presa +1d4",
+      "Rastreador"
+    ],
+    "2": [
+      "Poder de caçador"
+    ],
+    "3": [
+      "Explorador",
+      "Poder de caçador"
+    ],
+    "4": [
+      "Poder de caçador"
+    ],
+    "5": [
+      "Caminho do explorador",
+      "Marca da presa +1d8",
+      "Poder de caçador"
+    ],
+    "6": [
+      "Poder de caçador"
+    ],
+    "7": [
+      "Explorador",
+      "Poder de caçador"
+    ],
+    "8": [
+      "Poder de caçador"
+    ],
+    "9": [
+      "Marca da presa +1d12",
+      "Poder de caçador"
+    ],
+    "10": [
+      "Poder de caçador"
+    ],
+    "11": [
+      "Explorador",
+      "Poder de caçador"
+    ],
+    "12": [
+      "Poder de caçador"
+    ],
+    "13": [
+      "Marca da presa +2d8",
+      "Poder de caçador"
+    ],
+    "14": [
+      "Poder de caçador"
+    ],
+    "15": [
+      "Explorador",
+      "Poder de caçador"
+    ],
+    "16": [
+      "Poder de caçador",
+      "Tradição mágica"
+    ],
+    "17": [
+      "Marca da presa +2d10",
+      "Poder de caçador"
+    ],
+    "18": [
+      "Poder de caçador"
+    ],
+    "19": [
+      "Explorador",
+      "Poder de caçador"
+    ],
+    "20": [
+      "Mestre caçador",
+      "Poder de caçador"
+    ]
+  },
+  "role": {
+    "combat": "ranged",
+    "party": "scout"
+  }
+}

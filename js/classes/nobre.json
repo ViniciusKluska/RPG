@@ -1,0 +1,472 @@
+{
+  "id": "nobre",
+  "name": "Nobre",
+  "description": "A civilização depende de leis, ordem e liderança. O nobre é esse líder, alguém que recebeu ou conquistou um título e uma posição na sociedade que lhe permitem governar outras pessoas. Sejam justos e benevolentes ou cruéis e tiranos, nobres formam a elite das sociedades civilizadas, símbolos dos melhores — ou piores — valores de suas nações.",
+  "flavor_text": "Por gerações, nobres foram a classe dominante na maioria dos reinos, acostumados a governar de seus castelos e torres, muitas vezes distantes dos problemas e dificuldades de seus súditos. Porém, durante os anos de terror sob o jugo de Zamir, muitos nobres viram suas terras oprimidas, obrigando-os a sair da proteção de suas fortificações e enfrentar os perigos do mundo usando espada e coragem.",
+  "cultural_text": "Hoje, muitos nobres mantêm viva a herança de seus antepassados, que lutaram lado a lado com seu povo pela defesa de suas terras e modo de vida. Esses nobres praticam tanto a diplomacia e a política quanto as artes da guerra, preparando-se para atuar como líderes em todos os lugares, de salões da corte a campos de batalha lamacentos.",
+  "base_stats": {
+    "hit_points": {
+      "base": 16,
+      "per_level": 4,
+      "bonus": "Constituição"
+    },
+    "mana_points": {
+      "per_level": 4
+    }
+  },
+  "proficiencies": {
+    "weapons": [
+      "Armas marciais"
+    ],
+    "armor": [
+      "Armaduras pesadas",
+      "Escudos"
+    ]
+  },
+  "skills": {
+    "fixed": [
+      "Vontade (Sab)"
+    ],
+    "choices": {
+      "amount": 5,
+      "initial_choice": {
+        "amount": 1,
+        "from": [
+          "Diplomacia (Car)",
+          "Intimidação (Car)"
+        ]
+      },
+      "from": [
+        "Adestramento (Car)",
+        "Atuação (Car)",
+        "Cavalgar (Des)",
+        "Conhecimento (Int)",
+        "Diplomacia (Car)",
+        "Enganação (Car)",
+        "Fortitude (Con)",
+        "Guerra (Int)",
+        "Iniciativa (Des)",
+        "Intimidação (Car)",
+        "Intuição (Sab)",
+        "Investigação (Int)",
+        "Luta (For)",
+        "Nobreza (Int)",
+        "Ofício (Int)",
+        "Percepção (Sab)",
+        "Pontaria (Des)"
+      ]
+    }
+  },
+  "abilities": {
+    "1": [
+      {
+        "name": "Autoconfiança",
+        "type": "passive",
+        "effects": {
+          "description": "Pode usar Carisma em vez de Destreza na Defesa (exceto com armadura pesada)"
+        }
+      },
+      {
+        "name": "Espólio",
+        "type": "passive",
+        "effects": {
+          "description": "Recebe um item de até 2.000 PP"
+        }
+      },
+      {
+        "name": "Orgulho",
+        "type": "active",
+        "effects": {
+          "description": "Gasta PM (limitado pelo Carisma) para receber +2 por PM em teste de perícia"
+        }
+      }
+    ],
+    "2": [
+      {
+        "name": "Palavras Afiadas",
+        "type": "active",
+        "effects": {
+          "action": "Padrão",
+          "cost": "1 PM",
+          "range": "Curto",
+          "target": "Uma criatura inteligente",
+          "effect": {
+            "test": "Diplomacia ou Intimidação vs. Vontade",
+            "damage": {
+              "2": "2d6",
+              "6": "4d6",
+              "10": "6d6",
+              "14": "8d6",
+              "18": "10d6"
+            },
+            "damage_type": "Psíquico não letal",
+            "special": "Alvo se rende ou foge se reduzido a 0 PV"
+          }
+        }
+      }
+    ],
+    "3": [
+      {
+        "name": "Riqueza",
+        "type": "active",
+        "effects": {
+          "description": "Uma vez por aventura, teste de Carisma + nível para receber ouro",
+          "frequency": "Uma vez por aventura"
+        }
+      }
+    ],
+    "4": [
+      {
+        "name": "Gritar Ordens",
+        "type": "active",
+        "effects": {
+          "description": "Gasta PM (limitado pelo Carisma) para aliados receberem bônus igual em testes",
+          "duration": "Até início do próximo turno",
+          "range": "Curto"
+        }
+      }
+    ],
+    "5": [
+      {
+        "name": "Presença Aristocrática",
+        "type": "reaction",
+        "effects": {
+          "cost": "2 PM",
+          "trigger": "Criatura tenta causar dano",
+          "save": "Vontade (CD Car)",
+          "effect": "Perde a ação se falhar",
+          "frequency": "Uma vez por criatura por cena"
+        }
+      }
+    ],
+    "20": [
+      {
+        "name": "Realeza",
+        "type": "passive",
+        "effects": {
+          "presenca_aristocratica": {
+            "cd_bonus": 5,
+            "critical_fail": "Passa a lutar ao seu lado"
+          },
+          "palavras_afiadas": "Alvo reduzido a 0 PV passa a lutar ao seu lado"
+        }
+      }
+    ]
+  },
+  "powers": {
+    "progression": {
+      "start_level": 2,
+      "frequency": "every_level"
+    },
+    "list": [
+      {
+        "name": "Armadura Brilhante",
+        "type": "passive",
+        "effects": {
+          "description": "Usa Carisma na Defesa com armadura pesada",
+          "restriction": "Não pode somar Destreza"
+        },
+        "prerequisites": {
+          "level": 8
+        }
+      },
+      {
+        "name": "Aumento de Atributo",
+        "type": "attribute",
+        "effects": {
+          "bonus": "+1 em um atributo",
+          "reselectable": "Uma vez por patamar por atributo"
+        }
+      },
+      {
+        "name": "Autoridade Feudal",
+        "type": "active",
+        "effects": {
+          "description": "Convoca ajudantes do povo",
+          "cost": "2 PM",
+          "duration": "1 hora",
+          "effect": "Ganha um parceiro iniciante"
+        },
+        "prerequisites": {
+          "level": 6
+        }
+      },
+      {
+        "name": "Castelão",
+        "type": "domain",
+        "effects": {
+          "description": "Melhora administração de domínio",
+          "options": [
+            "Calcula ganho como nível maior",
+            "+5 em teste de domínio",
+            "Ação construir adicional"
+          ]
+        }
+      },
+      {
+        "name": "Educação Privilegiada",
+        "type": "skill",
+        "effects": {
+          "description": "Treinado em duas perícias de nobre"
+        }
+      },
+      {
+        "name": "Estrategista",
+        "type": "active",
+        "effects": {
+          "description": "Aliados ganham ação de movimento",
+          "cost": "1 PM por aliado",
+          "range": "Curto"
+        },
+        "prerequisites": {
+          "attributes": {
+            "Int": 1
+          },
+          "skills": [
+            "Treinado em Guerra"
+          ],
+          "level": 6
+        }
+      },
+      {
+        "name": "Favor",
+        "type": "active",
+        "effects": {
+          "description": "Pede favores a pessoas poderosas",
+          "cost": "5 PM",
+          "duration": "1 hora ou mais"
+        }
+      },
+      {
+        "name": "General",
+        "type": "passive",
+        "effects": {
+          "description": "Aliados direcionados recebem 1d4 PM temporários"
+        },
+        "prerequisites": {
+          "powers": [
+            "Estrategista"
+          ],
+          "level": 12
+        }
+      },
+      {
+        "name": "Grito Tirânico",
+        "type": "passive",
+        "effects": {
+          "description": "Palavras Afiadas afeta área e usa d8",
+          "changes": {
+            "action": "Completa",
+            "damage_die": "d8",
+            "area": "Alcance curto"
+          }
+        },
+        "prerequisites": {
+          "level": 8
+        }
+      },
+      {
+        "name": "Inspirar Confiança",
+        "type": "active",
+        "effects": {
+          "description": "Permite que aliado role teste novamente",
+          "cost": "2 PM",
+          "range": "Curto"
+        }
+      },
+      {
+        "name": "Inspirar Glória",
+        "type": "active",
+        "effects": {
+          "description": "Aliado ganha ação padrão adicional",
+          "cost": "5 PM",
+          "range": "Curto",
+          "frequency": "Uma vez por aliado por cena"
+        },
+        "prerequisites": {
+          "powers": [
+            "Inspirar Confiança"
+          ],
+          "level": 8
+        }
+      },
+      {
+        "name": "Jogo da Corte",
+        "type": "active",
+        "effects": {
+          "description": "Rola novamente teste de Diplomacia, Intuição ou Nobreza",
+          "cost": "1 PM"
+        }
+      },
+      {
+        "name": "Liderar pelo Exemplo",
+        "type": "active",
+        "effects": {
+          "description": "Aliados podem usar seu resultado em testes",
+          "cost": "2 PM",
+          "duration": "Até início do próximo turno",
+          "range": "Curto"
+        },
+        "prerequisites": {
+          "level": 6
+        }
+      },
+      {
+        "name": "Língua de Ouro",
+        "type": "active",
+        "effects": {
+          "description": "Efeito de Enfeitiçar em área",
+          "cost": "6 PM",
+          "action": "Padrão"
+        },
+        "prerequisites": {
+          "powers": [
+            "Língua de Prata"
+          ],
+          "level": 8
+        }
+      },
+      {
+        "name": "Língua de Prata",
+        "type": "active",
+        "effects": {
+          "description": "Bônus em teste de Carisma",
+          "cost": "2 PM",
+          "bonus": "Metade do nível"
+        }
+      },
+      {
+        "name": "Língua Rápida",
+        "type": "passive",
+        "effects": {
+          "description": "Reduz penalidade de Diplomacia e Enganação",
+          "bonus": "Penalidade -10 vira -5"
+        }
+      },
+      {
+        "name": "Presença Majestosa",
+        "type": "passive",
+        "effects": {
+          "description": "Melhora Presença Aristocrática",
+          "changes": {
+            "targets": "Qualquer criatura com Int",
+            "frequency": "Múltiplas vezes por cena"
+          }
+        },
+        "prerequisites": {
+          "level": 16
+        }
+      },
+      {
+        "name": "Título",
+        "type": "passive",
+        "effects": {
+          "description": "Recebe título de nobreza",
+          "benefits": {
+            "income": "20 PO por nível por aventura",
+            "or": "Ajuda de parceiro veterano",
+            "domain": "+2 em testes de domínio se regente"
+          }
+        },
+        "prerequisites": {
+          "powers": [
+            "Autoridade Feudal"
+          ],
+          "level": 10,
+          "special": "Ter conquistado terras ou serviço para suserano"
+        }
+      },
+      {
+        "name": "Voz Poderosa",
+        "type": "passive",
+        "effects": {
+          "description": "Aumenta alcance e bônus em perícias",
+          "bonus": {
+            "skills": {
+              "Diplomacia": 2,
+              "Intimidação": 2
+            },
+            "range": "Curto para médio"
+          }
+        }
+      }
+    ]
+  },
+  "advancement_table": {
+    "1": [
+      "Autoconfiança",
+      "Espólio",
+      "Orgulho"
+    ],
+    "2": [
+      "Palavras afiadas (2d6)",
+      "Poder de nobre"
+    ],
+    "3": [
+      "Poder de nobre",
+      "Riqueza"
+    ],
+    "4": [
+      "Gritar ordens",
+      "Poder de nobre"
+    ],
+    "5": [
+      "Poder de nobre",
+      "Presença aristocrática"
+    ],
+    "6": [
+      "Palavras afiadas (4d6)",
+      "Poder de nobre"
+    ],
+    "7": [
+      "Poder de nobre"
+    ],
+    "8": [
+      "Poder de nobre"
+    ],
+    "9": [
+      "Poder de nobre"
+    ],
+    "10": [
+      "Palavras afiadas (6d6)",
+      "Poder de nobre"
+    ],
+    "11": [
+      "Poder de nobre"
+    ],
+    "12": [
+      "Poder de nobre"
+    ],
+    "13": [
+      "Poder de nobre"
+    ],
+    "14": [
+      "Palavras afiadas (8d6)",
+      "Poder de nobre"
+    ],
+    "15": [
+      "Poder de nobre"
+    ],
+    "16": [
+      "Poder de nobre"
+    ],
+    "17": [
+      "Poder de nobre"
+    ],
+    "18": [
+      "Palavras afiadas (10d6)",
+      "Poder de nobre"
+    ],
+    "19": [
+      "Poder de nobre"
+    ],
+    "20": [
+      "Realeza",
+      "Poder de nobre"
+    ]
+  },
+  "role": {
+    "combat": "support",
+    "party": "leader"
+  }
+}

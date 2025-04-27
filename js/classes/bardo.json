@@ -1,0 +1,475 @@
+{
+  "id": "bardo",
+  "name": "Bardo",
+  "description": "Artistas que vagam pelo mundo movidos por uma curiosidade insaciável e um desejo de descobrir, ou testemunhar, histórias para imortalizar com sua arte. Sejam poetas, músicos ou atores em um circo, bardos possuem um espírito livre e criativo e passam grande parte de seu tempo em movimento, visitando novos lugares, conhecendo diferentes povos e costumes e aprendendo um pouco de cada coisa que o mundo tem a oferecer.",
+  "flavor_text": "Bardos estão sempre indo de um lugar a outro e se sentem confortáveis em qualquer ambiente, de uma taverna esfumaçada em um porto aos mais finos salões da nobreza. Em suas andanças, bardos aprendem de tudo um pouco, o que permite que reúnam um grande repertório de habilidades. Bardos não são mestres de nenhum ofício, mas entendem um pouco sobre cada coisa, de segredos arcanos à arte da guerra, de lendas do passado às mais recentes fofocas da corte. Bardos combinam esses conhecimentos variados ao seu próprio talento, criando uma forma de arte mágica capaz de gerar os mais incríveis efeitos.",
+  "role_text": "A versatilidade de um bardo permite que ele desempenhe vários papéis, de conselheiro a historiador, de mensageiro a espião. Fiéis ao seu desejo de experimentar o mundo, muitos bardos acabam fazendo de tudo um pouco, trocando de carreira conforme sua curiosidade os impulsiona a buscar novas histórias. Muitos se unem a heróis e aventureiros, testemunhando — ou protagonizando — os feitos que alimentarão suas canções.",
+  "base_stats": {
+    "hit_points": {
+      "base": 12,
+      "per_level": 3,
+      "bonus": "Constituição"
+    },
+    "mana_points": {
+      "per_level": 4,
+      "bonus": "Carisma"
+    }
+  },
+  "proficiencies": {
+    "weapons": [
+      "Armas marciais"
+    ]
+  },
+  "skills": {
+    "fixed": [
+      "Atuação (Car)",
+      "Reflexos (Des)"
+    ],
+    "choices": {
+      "amount": 6,
+      "from": [
+        "Acrobacia (Des)",
+        "Cavalgar (Des)",
+        "Conhecimento (Int)",
+        "Diplomacia (Car)",
+        "Enganação (Car)",
+        "Furtividade (Des)",
+        "Iniciativa (Des)",
+        "Intuição (Sab)",
+        "Investigação (Int)",
+        "Ladinagem (Des)",
+        "Luta (For)",
+        "Misticismo (Int)",
+        "Nobreza (Int)",
+        "Percepção (Sab)",
+        "Pontaria (Des)",
+        "Religião (Sab)",
+        "Vontade (Sab)"
+      ]
+    }
+  },
+  "abilities": {
+    "1": [
+      {
+        "name": "Inspiração",
+        "type": "active",
+        "cost": "2 PM e ação padrão",
+        "effects": {
+          "bonus": {
+            "skill_tests": 1
+          },
+          "area": "Alcance curto",
+          "targets": "Você e aliados",
+          "duration": "Cena",
+          "scaling": {
+            "every": 4,
+            "cost": "+2 PM",
+            "bonus": "+1"
+          }
+        }
+      },
+      {
+        "name": "Magias",
+        "type": "spellcasting",
+        "effects": {
+          "circles": {
+            "1": "1º nível",
+            "6": "2º círculo",
+            "10": "3º círculo",
+            "14": "4º círculo"
+          },
+          "initial_spells": 2,
+          "spells_per_level": {
+            "frequency": "even_levels",
+            "amount": 1
+          },
+          "key_attribute": "Carisma",
+          "special": "Pode lançar com armaduras leves sem teste"
+        }
+      }
+    ],
+    "2": [
+      {
+        "name": "Eclético",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "description": "Recebe benefícios de ser treinado em uma perícia por um teste"
+        }
+      }
+    ],
+    "20": [
+      {
+        "name": "Artista Completo",
+        "type": "passive",
+        "effects": {
+          "inspiration": "Usa como ação livre",
+          "cost_reduction": "Todas habilidades de bardo custam metade dos PM"
+        }
+      }
+    ]
+  },
+  "powers": {
+    "progression": {
+      "start_level": 2,
+      "frequency": "every_level"
+    },
+    "music_rules": {
+      "requirements": [
+        "Treinado em Atuação",
+        "Empunhar instrumento musical"
+      ],
+      "activation": {
+        "action": "padrão",
+        "cost": "1 PM"
+      },
+      "range": "curto"
+    },
+    "list": [
+      {
+        "name": "Arte Mágica",
+        "type": "passive",
+        "effects": {
+          "description": "CD de habilidades de bardo +2 durante Inspiração"
+        }
+      },
+      {
+        "name": "Artista Versátil",
+        "type": "power_selection",
+        "effects": {
+          "description": "Recebe um poder de outra classe",
+          "level_adjustment": "nível de bardo -5"
+        },
+        "prerequisites": {
+          "attributes": {
+            "INT": 2
+          },
+          "level": 6
+        }
+      },
+      {
+        "name": "Aumentar Repertório",
+        "type": "spells",
+        "effects": {
+          "spells_learned": 2,
+          "reselectable": true
+        }
+      },
+      {
+        "name": "Aumento de Atributo",
+        "type": "attribute",
+        "effects": {
+          "bonus": "+1 em um atributo",
+          "reselectable": "Uma vez por patamar por atributo"
+        }
+      },
+      {
+        "name": "Dança das Lâminas",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "description": "Ataque corpo a corpo como ação livre após lançar magia"
+        },
+        "prerequisites": {
+          "powers": [
+            "Esgrima Mágica"
+          ],
+          "level": 10
+        }
+      },
+      {
+        "name": "Diletante Místico",
+        "type": "spells",
+        "effects": {
+          "description": "Aprende uma magia de outra tradição arcana",
+          "special": "Conta como magia de bardo"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Conhecimento"
+          ]
+        }
+      },
+      {
+        "name": "Esgrima Mágica",
+        "type": "combat",
+        "effects": {
+          "description": "Usa Atuação em vez de Luta para armas leves/uma mão durante Inspiração"
+        }
+      },
+      {
+        "name": "Estrelato",
+        "type": "social",
+        "effects": {
+          "description": "Bônus em perícias de Carisma aumenta para +5 ao impressionar",
+          "special": "Pode ser reconhecido mais facilmente"
+        },
+        "prerequisites": {
+          "level": 6
+        }
+      },
+      {
+        "name": "Fascinar em Massa",
+        "type": "music_enhancement",
+        "cost": "+2 PM",
+        "effects": {
+          "description": "Afeta todas as criaturas escolhidas no alcance"
+        },
+        "prerequisites": {
+          "powers": [
+            "Música: Balada Fascinante"
+          ]
+        }
+      },
+      {
+        "name": "Golpe Elemental",
+        "type": "combat",
+        "cost": "1 PM",
+        "effects": {
+          "damage": {
+            "base": "1d6",
+            "type": [
+              "Ácido",
+              "Eletricidade",
+              "Fogo",
+              "Frio"
+            ],
+            "scaling": {
+              "every": 4,
+              "cost": "+1 PM",
+              "bonus": "+1d6"
+            }
+          }
+        },
+        "prerequisites": {
+          "powers": [
+            "Golpe Mágico"
+          ]
+        }
+      },
+      {
+        "name": "Golpe Mágico",
+        "type": "combat",
+        "effects": {
+          "description": "Ganha 2 PM temporários ao acertar ataque durante Inspiração",
+          "max": "Igual ao nível",
+          "duration": "Cena"
+        },
+        "prerequisites": {
+          "powers": [
+            "Esgrima Mágica"
+          ]
+        }
+      },
+      {
+        "name": "Inspiração Célere",
+        "type": "inspiration_enhancement",
+        "effects": {
+          "movement": "+3m para afetados"
+        }
+      },
+      {
+        "name": "Inspiração Marcial",
+        "type": "inspiration_enhancement",
+        "effects": {
+          "description": "Aplica bônus também em rolagens de dano"
+        }
+      },
+      {
+        "name": "Lendas e Histórias",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "description": "Pode rolar novamente testes de conhecimento específicos"
+        },
+        "prerequisites": {
+          "attributes": {
+            "INT": 1
+          }
+        }
+      },
+      {
+        "name": "Manipular",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "description": "Criatura fascinada fica enfeitiçada",
+          "save": "Vontade CD Carisma",
+          "duration": "Cena"
+        },
+        "prerequisites": {
+          "powers": [
+            "Música: Balada Fascinante"
+          ]
+        }
+      },
+      {
+        "name": "Manipular em Massa",
+        "type": "enhancement",
+        "cost": "+2 PM",
+        "effects": {
+          "description": "Afeta todas as criaturas escolhidas em alcance curto"
+        },
+        "prerequisites": {
+          "powers": [
+            "Fascinar em Massa",
+            "Manipular"
+          ],
+          "level": 10
+        }
+      },
+      {
+        "name": "Música: Balada Fascinante",
+        "type": "music",
+        "effects": {
+          "description": "Teste de Atuação vs. Vontade para fascinar alvo",
+          "duration": "Concentração",
+          "special": "Alvos hostis recebem +5 na resistência"
+        }
+      },
+      {
+        "name": "Música: Canção Assustadora",
+        "type": "music",
+        "effects": {
+          "description": "Teste de Atuação vs. Vontade para deixar alvos abalados",
+          "duration": "Cena"
+        }
+      },
+      {
+        "name": "Música: Melodia Encorajadora",
+        "type": "music",
+        "effects": {
+          "effects": {
+            "immunity": "Medo",
+            "temp_hp": {
+              "base": "1d6",
+              "scaling": {
+                "cost": "+1 PM",
+                "bonus": "+1d6"
+              }
+            }
+          }
+        }
+      },
+      {
+        "name": "Mestre dos Sussurros",
+        "type": "social",
+        "effects": {
+          "description": "Rola dois dados e usa melhor resultado em testes sociais específicos",
+          "special": "Pode fazer testes em apenas uma hora em ambientes sociais"
+        },
+        "prerequisites": {
+          "attributes": {
+            "CAR": 1
+          },
+          "skills": [
+            "Treinado em Enganação",
+            "Treinado em Investigação"
+          ]
+        }
+      },
+      {
+        "name": "Paródia",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "description": "Pode copiar magia vista com teste de Atuação",
+          "range": "Médio",
+          "duration": "Até final do próximo turno"
+        }
+      },
+      {
+        "name": "Prestidigitação",
+        "type": "active",
+        "effects": {
+          "description": "Pode lançar magia como ação livre com teste de Atuação",
+          "detection": "Teste de Misticismo CD 20"
+        }
+      },
+      {
+        "name": "Projetar a Voz",
+        "type": "enhancement",
+        "cost": "+2 PM",
+        "effects": {
+          "description": "Aumenta alcance em um passo ou dobra área de efeito"
+        }
+      }
+    ]
+  },
+  "advancement_table": {
+    "1": [
+      "Inspiração +1",
+      "Magias (1º círculo)"
+    ],
+    "2": [
+      "Eclético",
+      "Poder de bardo"
+    ],
+    "3": [
+      "Poder de bardo"
+    ],
+    "4": [
+      "Poder de bardo"
+    ],
+    "5": [
+      "Inspiração +2",
+      "Poder de bardo"
+    ],
+    "6": [
+      "Magias (2º círculo)",
+      "Poder de bardo"
+    ],
+    "7": [
+      "Poder de bardo"
+    ],
+    "8": [
+      "Poder de bardo"
+    ],
+    "9": [
+      "Inspiração +3",
+      "Poder de bardo"
+    ],
+    "10": [
+      "Magias (3º círculo)",
+      "Poder de bardo"
+    ],
+    "11": [
+      "Poder de bardo"
+    ],
+    "12": [
+      "Poder de bardo"
+    ],
+    "13": [
+      "Inspiração +4",
+      "Poder de bardo"
+    ],
+    "14": [
+      "Magias (4º círculo)",
+      "Poder de bardo"
+    ],
+    "15": [
+      "Poder de bardo"
+    ],
+    "16": [
+      "Poder de bardo"
+    ],
+    "17": [
+      "Inspiração +5",
+      "Poder de bardo"
+    ],
+    "18": [
+      "Poder de bardo"
+    ],
+    "19": [
+      "Poder de bardo"
+    ],
+    "20": [
+      "Artista completo",
+      "Poder de bardo"
+    ]
+  },
+  "role": {
+    "combat": "support",
+    "party": "face"
+  }
+}

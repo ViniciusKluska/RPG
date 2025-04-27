@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meus Personagens - Ghanor RPG</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/pages.css">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=MedievalSharp&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <div class="header-left">
+        <a href="../index.html" class="back-link">
+          <span class="back-arrow">←</span> Voltar
+        </a>
+      </div>
+      <div class="header-center">
+        <h1>Meus Personagens</h1>
+      </div>
+      <div class="header-right">
+        <div class="user-info" id="user-info">
+          <!-- Preenchido via JavaScript -->
+        </div>
+      </div>
+    </header>
+
+    <main class="page-content">
+      <div class="character-list-container">
+        <div class="character-filters">
+          <input type="text" id="search-character" placeholder="Buscar personagem..." class="character-search">
+          <select id="filter-class" class="character-filter">
+            <option value="">Todas as Classes</option>
+            <option value="Guerreiro">Guerreiro</option>
+            <option value="Mago">Mago</option>
+            <option value="Clérigo">Clérigo</option>
+            <option value="Ladino">Ladino</option>
+            <option value="Ranger">Ranger</option>
+            <option value="Paladino">Paladino</option>
+            <option value="Druida">Druida</option>
+            <option value="Bardo">Bardo</option>
+          </select>
+          <select id="filter-level" class="character-filter">
+            <option value="">Todos os Níveis</option>
+            <option value="1-5">Nível 1-5</option>
+            <option value="6-10">Nível 6-10</option>
+            <option value="11-15">Nível 11-15</option>
+            <option value="16-20">Nível 16-20</option>
+          </select>
+          <button id="btn-create-character" class="btn-primary">Criar Novo Personagem</button>
+        </div>
+
+        <div class="character-list" id="character-list">
+          <!-- Lista de personagens será carregada dinamicamente aqui -->
+          <div class="character-empty-state" id="empty-state">
+            <img src="../assets/images/sheet-preview.png" alt="Prévia da ficha" class="empty-state-image">
+            <p>Você ainda não tem personagens salvos</p>
+            <a href="criar-personagem.html" class="btn-primary">Criar Meu Primeiro Personagem</a>
+          </div>
+        </div>
+
+        <template id="character-card-template">
+          <div class="character-card">
+            <div class="character-card-header">
+              <h3 class="character-name"></h3>
+              <div class="character-level">Nível <span class="level-value"></span></div>
+            </div>
+            <div class="character-card-body">
+              <div class="character-info">
+                <div class="character-race-class">
+                  <span class="character-race"></span> • 
+                  <span class="character-class"></span>
+                </div>
+                <div class="character-origin">
+                  <span class="origin-label">Origem:</span> 
+                  <span class="origin-value"></span>
+                </div>
+              </div>
+              <div class="character-attributes">
+                <div class="mini-attribute">
+                  <span class="mini-attribute-label">FOR</span>
+                  <span class="mini-attribute-value for-value"></span>
+                </div>
+                <div class="mini-attribute">
+                  <span class="mini-attribute-label">DES</span>
+                  <span class="mini-attribute-value des-value"></span>
+                </div>
+                <div class="mini-attribute">
+                  <span class="mini-attribute-label">CON</span>
+                  <span class="mini-attribute-value con-value"></span>
+                </div>
+                <div class="mini-attribute">
+                  <span class="mini-attribute-label">INT</span>
+                  <span class="mini-attribute-value int-value"></span>
+                </div>
+                <div class="mini-attribute">
+                  <span class="mini-attribute-label">SAB</span>
+                  <span class="mini-attribute-value sab-value"></span>
+                </div>
+                <div class="mini-attribute">
+                  <span class="mini-attribute-label">CAR</span>
+                  <span class="mini-attribute-value car-value"></span>
+                </div>
+              </div>
+            </div>
+            <div class="character-card-footer">
+              <a href="#" class="btn-view-character">Ver Detalhes</a>
+              <button class="btn-edit-character">Editar</button>
+              <button class="btn-delete-character">Excluir</button>
+            </div>
+            <div class="character-last-updated">
+              Última atualização: <span class="updated-date"></span>
+            </div>
+          </div>
+        </template>
+      </div>
+    </main>
+
+    <div class="modal" id="character-details-modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="modal-header">
+          <h2 id="modal-character-name">Nome do Personagem</h2>
+        </div>
+        <div class="modal-body" id="character-details-container">
+          <!-- Detalhes do personagem serão carregados aqui -->
+        </div>
+        <div class="modal-footer">
+          <button id="btn-print-character" class="btn-primary">Imprimir Ficha</button>
+          <button id="btn-close-modal" class="btn-secondary">Fechar</button>
+        </div>
+      </div>
+    </div>
+
+    <footer class="page-footer">
+      <p>&copy; 2023 Ghanor RPG - Todos os direitos reservados</p>
+    </footer>
+  </div>
+
+  <script src="../js/auth.js"></script>
+  <script src="../js/characters-list.js"></script>
+</body>
+</html> 

@@ -1,0 +1,525 @@
+{
+  "id": "ladino",
+  "name": "Ladino",
+  "description": "Astuto, discreto e habilidoso, o ladino está sempre um passo à frente de seus oponentes. Em vez da força bruta e do aço, usa furtividade e espertesa — exceto quando uma adaga certeira nas costas parece ser a melhor opção.",
+  "flavor_text": "Afiados e certeiros tanto com palavras quanto com adagas, muitos ladinos trabalham para guildas ou casas nobres, agindo como batedores, espiões ou mesmo guarda-costas. Outros preferem usar seus talentos para explorar ruínas antigas atrás de tesouros perdidos, usando uma abordagem mais sutil de evitar as armadilhas e feras no caminho em vez de combatê-las.",
+  "cultural_text": "Apesar de não ser incomum ver membros dessa classe envolvidos em atividades criminosas — onde suas habilidades costumam ser mais lucrativas — o termo 'ladrão' é geralmente dado como ofensivo por esses aventureiros, que preferem ser vistos como 'especialistas talentosos'.",
+  "base_stats": {
+    "hit_points": {
+      "base": 12,
+      "per_level": 3,
+      "bonus": "Constituição"
+    },
+    "mana_points": {
+      "per_level": 4
+    }
+  },
+  "proficiencies": {},
+  "skills": {
+    "fixed": [
+      "Ladinagem (Des)",
+      "Reflexos (Des)"
+    ],
+    "choices": {
+      "amount": 8,
+      "from": [
+        "Acrobacia (Des)",
+        "Atletismo (For)",
+        "Atuação (Car)",
+        "Cavalgar (Des)",
+        "Conhecimento (Int)",
+        "Diplomacia (Car)",
+        "Enganação (Car)",
+        "Furtividade (Des)",
+        "Iniciativa (Des)",
+        "Intimidação (Car)",
+        "Intuição (Sab)",
+        "Investigação (Int)",
+        "Luta (For)",
+        "Ofício (Int)",
+        "Percepção (Sab)",
+        "Pontaria (Des)"
+      ]
+    }
+  },
+  "abilities": {
+    "1": [
+      {
+        "name": "Ataque Furtivo",
+        "type": "passive",
+        "effects": {
+          "description": "Uma vez por rodada, causa dano extra em alvos desprevenidos ou flanqueados",
+          "damage": {
+            "base": "1d6",
+            "progression": "+1d6 a cada dois níveis"
+          },
+          "restrictions": [
+            "Apenas em ataques corpo a corpo ou alcance curto",
+            "Alvo deve estar desprevenido ou sendo flanqueado",
+            "Criaturas imunes a acertos críticos são imunes"
+          ]
+        }
+      },
+      {
+        "name": "Especialista",
+        "type": "active",
+        "effects": {
+          "description": "Pode dobrar o bônus de treinamento em perícias escolhidas",
+          "cost": "1 PM",
+          "amount": "Igual à Inteligência",
+          "restriction": "Não pode ser usado em testes de ataque"
+        }
+      }
+    ],
+    "2": [
+      {
+        "name": "Evasão",
+        "type": "passive",
+        "effects": {
+          "description": "Não sofre dano em testes de Reflexos bem-sucedidos",
+          "restrictions": [
+            "Requer liberdade de movimento",
+            "Não funciona com armadura pesada",
+            "Não funciona quando imóvel"
+          ]
+        }
+      }
+    ],
+    "4": [
+      {
+        "name": "Esquiva Sobrenatural",
+        "type": "passive",
+        "effects": {
+          "description": "Nunca fica surpreendido"
+        }
+      }
+    ],
+    "8": [
+      {
+        "name": "Olhos nas Costas",
+        "type": "passive",
+        "effects": {
+          "description": "Não pode ser flanqueado"
+        }
+      }
+    ],
+    "10": [
+      {
+        "name": "Evasão Aprimorada",
+        "type": "passive",
+        "effects": {
+          "description": "Não sofre dano em testes de Reflexos bem-sucedidos e metade do dano em falhas",
+          "restrictions": [
+            "Requer liberdade de movimento",
+            "Não funciona com armadura pesada",
+            "Não funciona quando imóvel"
+          ]
+        }
+      }
+    ],
+    "20": [
+      {
+        "name": "A Pessoa Certa para o Trabalho",
+        "type": "active",
+        "effects": {
+          "description": "Recebe +10 em testes de ataque furtivo ou perícias de ladino",
+          "cost": "5 PM"
+        }
+      }
+    ]
+  },
+  "powers": {
+    "progression": {
+      "start_level": 2,
+      "frequency": "every_level"
+    },
+    "list": [
+      {
+        "name": "Assassinar",
+        "type": "active",
+        "effects": {
+          "description": "Dobra dados de dano extra do Ataque Furtivo",
+          "cost": "3 PM",
+          "action": "movimento",
+          "duration": "Até fim do próximo turno",
+          "range": "Curto"
+        },
+        "prerequisites": {
+          "level": 5
+        }
+      },
+      {
+        "name": "Aumento de Atributo",
+        "type": "attribute",
+        "effects": {
+          "bonus": "+1 em um atributo",
+          "reselectable": "Uma vez por patamar por atributo"
+        }
+      },
+      {
+        "name": "Camaleão",
+        "type": "active",
+        "effects": {
+          "description": "Pode lançar Disfarce Ilusório (não-mágico)",
+          "requires": "Estojo de disfarces"
+        },
+        "prerequisites": {
+          "attributes": {
+            "CAR": 1
+          },
+          "skills": [
+            "Treinado em Enganação"
+          ]
+        }
+      },
+      {
+        "name": "Contatos no Submundo",
+        "type": "active",
+        "effects": {
+          "description": "Acesso a recursos especiais em comunidades",
+          "cost": "2 PM",
+          "test": "Carisma (CD 10)",
+          "benefits": [
+            "+5 em Investigação para interrogar",
+            "20% desconto em itens mundanos, poções e pergaminhos",
+            "Acesso a itens e serviços proibidos"
+          ]
+        }
+      },
+      {
+        "name": "Emboscar",
+        "type": "active",
+        "effects": {
+          "description": "Ação padrão adicional na primeira rodada",
+          "cost": "2 PM"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Furtividade"
+          ]
+        }
+      },
+      {
+        "name": "Escapista",
+        "type": "passive",
+        "effects": {
+          "bonus": "+5 em testes de Acrobacia específicos"
+        }
+      },
+      {
+        "name": "Fuga Formidável",
+        "type": "active",
+        "effects": {
+          "description": "Bônus para fugir em uma área",
+          "cost": "1 PM",
+          "action": "completa",
+          "duration": "Cena",
+          "benefits": [
+            "+3m em deslocamento",
+            "+5 em Acrobacia e Atletismo",
+            "Ignora terreno difícil"
+          ]
+        },
+        "prerequisites": {
+          "attributes": {
+            "INT": 1
+          }
+        }
+      },
+      {
+        "name": "Gatuno",
+        "type": "passive",
+        "effects": {
+          "bonus": "+2 em Atletismo",
+          "climbing": {
+            "not_flat_footed": true,
+            "full_movement": true
+          }
+        }
+      },
+      {
+        "name": "Ladrão Arcano",
+        "type": "active",
+        "effects": {
+          "description": "Rouba magias de conjuradores",
+          "cost": "1 PM por círculo",
+          "max_circle": 4,
+          "duration": "Cena",
+          "spellcasting": {
+            "attribute": "Inteligência"
+          }
+        },
+        "prerequisites": {
+          "powers": [
+            "Roubo de Mana"
+          ],
+          "level": 13
+        }
+      },
+      {
+        "name": "Mão na Boca",
+        "type": "passive",
+        "effects": {
+          "bonus": "+2 em testes de agarrar",
+          "special": "Pode agarrar como ação livre após ataque furtivo",
+          "effect": "Alvo agarrado não pode falar"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Luta"
+          ]
+        }
+      },
+      {
+        "name": "Mãos Rápidas",
+        "type": "active",
+        "effects": {
+          "description": "Usa Ladinagem como ação livre",
+          "cost": "1 PM",
+          "frequency": "Uma vez por rodada"
+        },
+        "prerequisites": {
+          "attributes": {
+            "DES": 2
+          },
+          "skills": [
+            "Treinado em Ladinagem"
+          ]
+        }
+      },
+      {
+        "name": "Mente Criminosa",
+        "type": "passive",
+        "effects": {
+          "description": "Soma Inteligência em Ladinagem e Furtividade"
+        },
+        "prerequisites": {
+          "attributes": {
+            "INT": 1
+          }
+        }
+      },
+      {
+        "name": "Mestre Impostor",
+        "type": "active",
+        "effects": {
+          "description": "Ganha perícia ou poder temporário",
+          "cost": "3 PM",
+          "frequency": "Uma vez por dia"
+        },
+        "prerequisites": {
+          "powers": [
+            "Camaleão"
+          ],
+          "level": 11
+        }
+      },
+      {
+        "name": "Oportunismo",
+        "type": "active",
+        "effects": {
+          "description": "Ataque extra contra inimigo danificado",
+          "cost": "2 PM",
+          "frequency": "Uma vez por rodada",
+          "trigger": "Inimigo adjacente sofre dano de aliado"
+        },
+        "prerequisites": {
+          "level": 6
+        }
+      },
+      {
+        "name": "Rolamento Defensivo",
+        "type": "active",
+        "effects": {
+          "description": "Reduz dano pela metade",
+          "cost": "2 PM",
+          "condition": "Fica caído após uso"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Reflexos"
+          ]
+        }
+      },
+      {
+        "name": "Roubo de Mana",
+        "type": "passive",
+        "effects": {
+          "description": "Rouba PM ao causar dano furtivo",
+          "gain": "1 PM temporário por 1d6 de dano furtivo",
+          "drain": "1 PM do alvo por 1d6 de dano furtivo",
+          "frequency": "Uma vez por cena por criatura"
+        },
+        "prerequisites": {
+          "powers": [
+            "Truque Mágico"
+          ],
+          "level": 7
+        }
+      },
+      {
+        "name": "Saqueador de Tumbas",
+        "type": "passive",
+        "effects": {
+          "bonus": "+5 em testes contra armadilhas",
+          "special": "Desabilita mecanismos como ação padrão"
+        }
+      },
+      {
+        "name": "Sombra",
+        "type": "passive",
+        "effects": {
+          "bonus": "+2 em Furtividade",
+          "benefits": [
+            "Sem penalidade por movimento normal",
+            "Reduz penalidade de ações chamativas para -10"
+          ]
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Furtividade"
+          ]
+        }
+      },
+      {
+        "name": "Truque Mágico",
+        "type": "magic",
+        "effects": {
+          "description": "Aprende magia arcana de 1º círculo",
+          "spellcasting": {
+            "attribute": "Inteligência"
+          },
+          "reselectable": true
+        },
+        "prerequisites": {
+          "attributes": {
+            "INT": 1
+          }
+        }
+      },
+      {
+        "name": "Velocidade Ladina",
+        "type": "active",
+        "effects": {
+          "description": "Ação de movimento adicional",
+          "cost": "2 PM",
+          "frequency": "Uma vez por rodada"
+        },
+        "prerequisites": {
+          "attributes": {
+            "DES": 2
+          },
+          "skills": [
+            "Treinado em Iniciativa"
+          ]
+        }
+      },
+      {
+        "name": "Veneno Persistente",
+        "type": "passive",
+        "effects": {
+          "description": "Veneno dura por três ataques"
+        },
+        "prerequisites": {
+          "powers": [
+            "Veneno Potente"
+          ],
+          "level": 8
+        }
+      },
+      {
+        "name": "Veneno Potente",
+        "type": "passive",
+        "effects": {
+          "description": "Aumenta CD dos venenos em +5"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Ofício (alquimista)"
+          ]
+        }
+      }
+    ]
+  },
+  "advancement_table": {
+    "1": [
+      "Ataque furtivo +1d6",
+      "Especialista"
+    ],
+    "2": [
+      "Evasão",
+      "Poder de ladino"
+    ],
+    "3": [
+      "Ataque furtivo +2d6",
+      "Poder de ladino"
+    ],
+    "4": [
+      "Esquiva sobrenatural",
+      "Poder de ladino"
+    ],
+    "5": [
+      "Ataque furtivo +3d6",
+      "Poder de ladino"
+    ],
+    "6": [
+      "Poder de ladino"
+    ],
+    "7": [
+      "Ataque furtivo +4d6",
+      "Poder de ladino"
+    ],
+    "8": [
+      "Olhos nas costas",
+      "Poder de ladino"
+    ],
+    "9": [
+      "Ataque furtivo +5d6",
+      "Poder de ladino"
+    ],
+    "10": [
+      "Evasão aprimorada",
+      "Poder de ladino"
+    ],
+    "11": [
+      "Ataque furtivo +6d6",
+      "Poder de ladino"
+    ],
+    "12": [
+      "Poder de ladino"
+    ],
+    "13": [
+      "Ataque furtivo +7d6",
+      "Poder de ladino"
+    ],
+    "14": [
+      "Poder de ladino"
+    ],
+    "15": [
+      "Ataque furtivo +8d6",
+      "Poder de ladino"
+    ],
+    "16": [
+      "Poder de ladino"
+    ],
+    "17": [
+      "Ataque furtivo +9d6",
+      "Poder de ladino"
+    ],
+    "18": [
+      "Poder de ladino"
+    ],
+    "19": [
+      "Ataque furtivo +10d6",
+      "Poder de ladino"
+    ],
+    "20": [
+      "A pessoa certa para o trabalho",
+      "Poder de ladino"
+    ]
+  },
+  "role": {
+    "combat": "striker",
+    "party": "skill-monkey"
+  }
+}

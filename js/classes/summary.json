@@ -1,0 +1,82 @@
+{
+  "count": 11,
+  "classes": {
+    "barbaro": {
+      "name": "Bárbaro",
+      "role": {
+        "combat": "dano",
+        "party": "linha-de-frente"
+      }
+    },
+    "bardo": {
+      "name": "Bardo",
+      "role": {
+        "combat": "suporte",
+        "party": "porta-voz"
+      }
+    },
+    "bucaneiro": {
+      "name": "Bucaneiro",
+      "role": {
+        "combat": "escaramuçador",
+        "party": "atacante"
+      }
+    },
+    "cacador": {
+      "name": "Caçador",
+      "role": {
+        "combat": "distância",
+        "party": "batedor"
+      }
+    },
+    "cavaleiro": {
+      "name": "Cavaleiro",
+      "role": {
+        "combat": "tanque",
+        "party": "defensor"
+      }
+    },
+    "clerigo": {
+      "name": "Clérigo",
+      "role": {
+        "combat": "suporte",
+        "party": "curador"
+      }
+    },
+    "druida": {
+      "name": "Druida",
+      "role": {
+        "combat": "conjurador",
+        "party": "utilidade"
+      }
+    },
+    "ladino": {
+      "name": "Ladino",
+      "role": {
+        "combat": "atacante",
+        "party": "especialista"
+      }
+    },
+    "mago": {
+      "name": "Mago",
+      "role": {
+        "combat": "conjurador",
+        "party": "controlador"
+      }
+    },
+    "nobre": {
+      "name": "Nobre",
+      "role": {
+        "combat": "suporte",
+        "party": "líder"
+      }
+    },
+    "soldado": {
+      "name": "Soldado",
+      "role": {
+        "combat": "versátil",
+        "party": "linha-de-frente"
+      }
+    }
+  }
+}

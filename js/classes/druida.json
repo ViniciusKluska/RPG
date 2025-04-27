@@ -1,0 +1,487 @@
+{
+  "id": "druida",
+  "name": "Druida",
+  "description": "Nascida no seio da sociedade élfica, a tradição druídica é uma religião que venera elementos do mundo natural em vez de santos e deuses. Para os seguidores dessa fé, os animais, as plantas e até mesmo as estações fazem parte de um ciclo primordial, do qual emana um poder divino que é responsável por tudo que existe no mundo.",
+  "flavor_text": "O druida é o sacerdote dessa tradição, ocupando na sociedade e cultura élficas o papel dos clérigos em outros povos. Empunhando armas e magia primordial, o druida atua como sábio, curandeiro, conselheiro e guardião em suas comunidades, defendendo os elementos do mundo natural e punindo aqueles que desrespeitam a majestade da natureza.",
+  "cultural_text": "Com a abertura da Floresta Alta, a tradição druídica está se espalhando pelo mundo, encontrando simpatizantes sobretudo em pequenas comunidades rurais e outros lugares isolados, onde a natureza e seus elementos estão mais próximos do que os santos. Antigamente restritos às florestas élficas, druidas agora são encontrados em outras regiões, sua fé sendo praticada por indivíduos de outras raças.",
+  "base_stats": {
+    "hit_points": {
+      "base": 16,
+      "per_level": 4,
+      "bonus": "Constituição"
+    },
+    "mana_points": {
+      "per_level": 3
+    }
+  },
+  "proficiencies": {
+    "armor": [
+      "Escudos"
+    ]
+  },
+  "skills": {
+    "fixed": [
+      "Sobrevivência (Sab)",
+      "Vontade (Sab)"
+    ],
+    "choices": {
+      "amount": 4,
+      "from": [
+        "Adestramento (Car)",
+        "Atletismo (For)",
+        "Cavalgar (Des)",
+        "Conhecimento (Int)",
+        "Cura (Sab)",
+        "Fortitude (Con)",
+        "Iniciativa (Des)",
+        "Intuição (Sab)",
+        "Luta (For)",
+        "Misticismo (Int)",
+        "Ofício (Int)",
+        "Percepção (Sab)",
+        "Pontaria (Des)",
+        "Religião (Sab)"
+      ]
+    }
+  },
+  "abilities": {
+    "1": [
+      {
+        "name": "Devoto da Natureza",
+        "type": "passive",
+        "effects": {
+          "description": "Possui uma conexão especial com a natureza",
+          "rest": {
+            "outdoor": "Conta como descanso confortável",
+            "city": "Conta como descanso ruim em comunidades maiores que aldeia"
+          },
+          "restrictions": {
+            "armor": [
+              "Não pode usar armaduras e escudos de metal"
+            ],
+            "allowed": [
+              "Armadura acolchoada",
+              "Armadura de couro",
+              "Gibão de peles",
+              "Escudo leve"
+            ],
+            "penalty": {
+              "first_violation": "Perde todos PM até próximo dia",
+              "second_violation": "Perde PM até fazer penitência"
+            }
+          }
+        }
+      },
+      {
+        "name": "Empatia Selvagem",
+        "type": "passive",
+        "effects": {
+          "description": "Pode se comunicar com animais por meio de linguagem corporal e vocalizações",
+          "special": "Pode usar Adestramento com animais para mudar atitude e persuasão"
+        }
+      },
+      {
+        "name": "Magias",
+        "type": "spellcasting",
+        "effects": {
+          "circles": {
+            "1": "Nível 1",
+            "2": "Nível 6",
+            "3": "Nível 10",
+            "4": "Nível 14"
+          },
+          "initial_spells": "Duas magias de 1º círculo",
+          "spells_per_level": "Uma nova magia a cada nível par",
+          "key_attribute": "Sabedoria"
+        }
+      }
+    ],
+    "2": [
+      {
+        "name": "Caminho dos Ermos",
+        "type": "passive",
+        "effects": {
+          "description": "Pode atravessar terrenos difíceis sem sofrer redução em seu deslocamento",
+          "tracking": "CD para rastreá-lo aumenta em +10",
+          "restriction": "Apenas em terrenos naturais"
+        }
+      }
+    ],
+    "20": [
+      {
+        "name": "Força da Natureza",
+        "type": "passive",
+        "effects": {
+          "spell_cost": "-2 PM",
+          "spell_dc": "+2",
+          "natural_terrain": {
+            "spell_cost": "-4 PM",
+            "spell_dc": "+4"
+          }
+        }
+      }
+    ]
+  },
+  "powers": {
+    "progression": {
+      "start_level": 2,
+      "frequency": "every_level"
+    },
+    "list": [
+      {
+        "name": "Aspecto do Inverno",
+        "type": "magic",
+        "effects": {
+          "learn_spell": "Uma magia de convocação ou evocação de qualquer classe",
+          "cold_resistance": 5,
+          "damage_bonus": "+1 por dado em magias de frio"
+        }
+      },
+      {
+        "name": "Aspecto do Outono",
+        "type": "magic",
+        "effects": {
+          "learn_spell": "Uma magia de necromancia de qualquer classe",
+          "active": {
+            "cost": "1 PM",
+            "effect": "-2 nos testes de resistência de inimigos em alcance curto",
+            "duration": "Até início do próximo turno"
+          }
+        }
+      },
+      {
+        "name": "Aspecto da Primavera",
+        "type": "magic",
+        "effects": {
+          "learn_spell": "Uma magia de encantamento ou ilusão de qualquer classe",
+          "spell_cost": "-1 PM em magias escolhidas (quantidade igual ao Carisma, mínimo 1)"
+        }
+      },
+      {
+        "name": "Aspecto do Verão",
+        "type": "magic",
+        "effects": {
+          "learn_spell": "Uma magia de transmutação de qualquer classe",
+          "active": {
+            "cost": "1 PM",
+            "effect": {
+              "weapon": "+1d6 dano de fogo",
+              "duration": "Cena",
+              "special": "Recebe 1 PM temporário ao acertar (máximo = nível)"
+            }
+          }
+        }
+      },
+      {
+        "name": "Aumento de Atributo",
+        "type": "attribute",
+        "effects": {
+          "bonus": "+1 em um atributo",
+          "reselectable": "Uma vez por patamar por atributo"
+        }
+      },
+      {
+        "name": "Companheiro Animal",
+        "type": "companion",
+        "effects": {
+          "description": "Recebe um companheiro animal",
+          "reference": "Veja o quadro para detalhes"
+        },
+        "prerequisites": {
+          "attributes": {
+            "CAR": 1
+          },
+          "skills": [
+            "Treinado em Adestramento"
+          ]
+        }
+      },
+      {
+        "name": "Companheiro Animal Aprimorado",
+        "type": "companion",
+        "effects": {
+          "description": "Um companheiro animal recebe um segundo tipo",
+          "special": "Ganha os bônus de seu nível"
+        },
+        "prerequisites": {
+          "powers": [
+            "Companheiro Animal"
+          ],
+          "level": 6
+        }
+      },
+      {
+        "name": "Companheiro Animal Lendário",
+        "type": "companion",
+        "effects": {
+          "description": "Um companheiro animal dobra os bônus de seu tipo original"
+        },
+        "prerequisites": {
+          "powers": [
+            "Companheiro Animal"
+          ],
+          "level": 18
+        }
+      },
+      {
+        "name": "Companheiro Animal Mágico",
+        "type": "companion",
+        "effects": {
+          "description": "Um companheiro animal recebe um segundo tipo mágico",
+          "options": [
+            "Adepto",
+            "Destruidor",
+            "Magivocador",
+            "Médico"
+          ]
+        },
+        "prerequisites": {
+          "powers": [
+            "Companheiro Animal"
+          ],
+          "level": 8
+        }
+      },
+      {
+        "name": "Coração da Selva",
+        "type": "passive",
+        "effects": {
+          "poison": {
+            "dc": "+2",
+            "damage": "+1 perda de vida por dado"
+          }
+        }
+      },
+      {
+        "name": "Espírito dos Equinócios",
+        "type": "active",
+        "cost": "4 PM",
+        "effects": {
+          "description": "Pode rolar novamente qualquer resultado 1",
+          "duration": "Cena"
+        },
+        "prerequisites": {
+          "powers": [
+            "Aspecto da Primavera",
+            "Aspecto do Outono"
+          ],
+          "level": 10
+        }
+      },
+      {
+        "name": "Espírito dos Solstícios",
+        "type": "active",
+        "effects": {
+          "description": "Pode maximizar efeitos numéricos variáveis de magias",
+          "cost": "+4 PM por magia"
+        },
+        "prerequisites": {
+          "powers": [
+            "Aspecto do Inverno",
+            "Aspecto do Verão"
+          ],
+          "level": 10
+        }
+      },
+      {
+        "name": "Força dos Penhascos",
+        "type": "active",
+        "effects": {
+          "passive": "+2 em Fortitude",
+          "active": {
+            "trigger": "Ao sofrer dano em contato com solo/pedra",
+            "cost": "X PM (limitado por Sabedoria)",
+            "effect": "Reduz dano em 10 por PM gasto"
+          }
+        },
+        "prerequisites": {
+          "level": 4
+        }
+      },
+      {
+        "name": "Forma Primal",
+        "type": "transformation",
+        "effects": {
+          "description": "Recebe benefícios de dois tipos de animais ao usar Forma Selvagem",
+          "special": "Bônus iguais não se acumulam"
+        },
+        "prerequisites": {
+          "level": 18
+        }
+      },
+      {
+        "name": "Forma Selvagem",
+        "type": "transformation",
+        "cost": "3 PM",
+        "effects": {
+          "action": "completa",
+          "duration": "Sustentada",
+          "forms": [
+            "Ágil",
+            "Feroz",
+            "Resistente",
+            "Sorrateira",
+            "Veloz"
+          ],
+          "restrictions": [
+            "Não pode falar",
+            "Não pode empunhar itens",
+            "Não pode lançar magias",
+            "Equipamento desaparece mas mantém benefícios"
+          ]
+        }
+      },
+      {
+        "name": "Forma Selvagem Aprimorada",
+        "type": "transformation",
+        "effects": {
+          "description": "Pode gastar 6 PM para assumir forma aprimorada"
+        },
+        "prerequisites": {
+          "powers": [
+            "Forma Selvagem"
+          ],
+          "level": 6
+        }
+      },
+      {
+        "name": "Forma Selvagem Superior",
+        "type": "transformation",
+        "effects": {
+          "description": "Pode gastar 10 PM para assumir forma superior"
+        },
+        "prerequisites": {
+          "powers": [
+            "Forma Selvagem"
+          ],
+          "level": 12
+        }
+      },
+      {
+        "name": "Liberdade da Pradaria",
+        "type": "passive",
+        "effects": {
+          "bonus": "+2 em Reflexos",
+          "active": {
+            "trigger": "Ao ar livre",
+            "cost": "1 PM",
+            "effect": "Aumenta alcance da magia em um passo"
+          }
+        }
+      },
+      {
+        "name": "Magia Natural",
+        "type": "passive",
+        "effects": {
+          "description": "Pode lançar magias e empunhar catalisadores em forma selvagem"
+        },
+        "prerequisites": {
+          "powers": [
+            "Forma Selvagem"
+          ]
+        }
+      },
+      {
+        "name": "Presas Afiadas",
+        "type": "passive",
+        "effects": {
+          "natural_weapons": "+2 na margem de ameaça"
+        }
+      },
+      {
+        "name": "Segredos da Natureza",
+        "type": "magic",
+        "effects": {
+          "description": "Aprende duas magias de druida de qualquer círculo que possa lançar",
+          "reselectable": true
+        }
+      },
+      {
+        "name": "Tranquilidade dos Lagos",
+        "type": "passive",
+        "effects": {
+          "bonus": "+2 em Vontade",
+          "active": {
+            "trigger": "Ao fazer teste de resistência com recipiente de água",
+            "cost": "1 PM",
+            "effect": "Pode refazer a rolagem",
+            "frequency": "Uma vez por rodada"
+          }
+        }
+      }
+    ]
+  },
+  "advancement_table": {
+    "1": [
+      "Devoto da natureza",
+      "Empatia selvagem",
+      "Magias (1º círculo)"
+    ],
+    "2": [
+      "Caminho dos ermos",
+      "Poder de druida"
+    ],
+    "3": [
+      "Poder de druida"
+    ],
+    "4": [
+      "Poder de druida"
+    ],
+    "5": [
+      "Poder de druida"
+    ],
+    "6": [
+      "Magias (2º círculo)",
+      "Poder de druida"
+    ],
+    "7": [
+      "Poder de druida"
+    ],
+    "8": [
+      "Poder de druida"
+    ],
+    "9": [
+      "Poder de druida"
+    ],
+    "10": [
+      "Magias (3º círculo)",
+      "Poder de druida"
+    ],
+    "11": [
+      "Poder de druida"
+    ],
+    "12": [
+      "Poder de druida"
+    ],
+    "13": [
+      "Poder de druida"
+    ],
+    "14": [
+      "Magias (4º círculo)",
+      "Poder de druida"
+    ],
+    "15": [
+      "Poder de druida"
+    ],
+    "16": [
+      "Poder de druida"
+    ],
+    "17": [
+      "Poder de druida"
+    ],
+    "18": [
+      "Poder de druida"
+    ],
+    "19": [
+      "Poder de druida"
+    ],
+    "20": [
+      "Força da natureza",
+      "Poder de druida"
+    ]
+  },
+  "role": {
+    "combat": "caster",
+    "party": "utility"
+  }
+}

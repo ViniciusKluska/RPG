@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghanor RPG - Seus Personagens</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/personagens.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Roboto:wght@400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="assets/images/logo-ghanor.png" alt="Ghanor RPG">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="personagens.html" class="active">Personagens</a></li>
+                    <li><a href="criar-personagem.html">Criar Personagem</a></li>
+                    <li><a href="regras.html">Regras</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <div class="content-container">
+            <!-- Cabeçalho da Página -->
+            <div class="page-header">
+                <h1>Seus Personagens</h1>
+                <p class="page-description">Gerencie seus personagens criados, visualize detalhes, faça edições ou imprima fichas completas para usar em suas aventuras.</p>
+            </div>
+
+            <!-- Seção de Filtros -->
+            <section class="filters-section">
+                <div class="filters-header">
+                    <h2>Filtros</h2>
+                    <span class="character-count" id="characterCount">0 personagens encontrados</span>
+                </div>
+                <form class="filters-form" id="filtersForm">
+                    <div class="filter-group">
+                        <label for="searchInput">Buscar</label>
+                        <input type="text" id="searchInput" placeholder="Buscar por nome...">
+                    </div>
+                    <div class="filter-group">
+                        <label for="classFilter">Classe</label>
+                        <select id="classFilter">
+                            <option value="">Todas as classes</option>
+                            <option value="guerreiro">Guerreiro</option>
+                            <option value="mago">Mago</option>
+                            <option value="clerigo">Clérigo</option>
+                            <option value="ladino">Ladino</option>
+                            <option value="bardo">Bardo</option>
+                            <option value="druida">Druida</option>
+                            <option value="paladino">Paladino</option>
+                            <option value="ranger">Ranger</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="levelFilter">Nível</label>
+                        <select id="levelFilter">
+                            <option value="">Todos os níveis</option>
+                            <option value="1">Nível 1</option>
+                            <option value="2">Nível 2</option>
+                            <option value="3">Nível 3</option>
+                            <option value="4">Nível 4</option>
+                            <option value="5">Nível 5+</option>
+                        </select>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Lista de Personagens -->
+            <section class="characters-container">
+                <div class="character-list" id="characterList">
+                    <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
+                </div>
+
+                <!-- Estado Vazio (mostrado quando não há personagens) -->
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    <div class="empty-state-icon">
+                        <i class="fas fa-user-slash"></i>
+                    </div>
+                    <h3>Nenhum personagem encontrado</h3>
+                    <p>Você ainda não criou nenhum personagem ou nenhum personagem corresponde aos filtros aplicados.</p>
+                    <a href="criar-personagem.html" class="btn-new-character">
+                        <i class="fas fa-plus"></i> Criar Novo Personagem
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Ghanor RPG. Todos os direitos reservados.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Visualização do Personagem -->
+    <div class="modal" id="viewCharacterModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Detalhes do Personagem</h2>
+                <button class="close-modal" id="closeViewModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body" id="characterDetails">
+                <!-- Conteúdo será preenchido dinamicamente pelo JavaScript -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="closeViewModalBtn">Fechar</button>
+                <button class="btn btn-primary" id="printCharacterBtn">
+                    <i class="fas fa-print"></i> Imprimir Ficha
+                </button>
+                <button class="btn btn-primary" id="editCharacterBtn">
+                    <i class="fas fa-edit"></i> Editar Personagem
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Confirmação de Exclusão -->
+    <div class="modal" id="deleteConfirmModal">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h2 class="modal-title">Confirmar Exclusão</h2>
+                <button class="close-modal" id="closeDeleteModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja excluir o personagem <strong id="deleteCharacterName"></strong>? Esta ação não pode ser desfeita.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelDeleteBtn">Cancelar</button>
+                <button class="btn btn-danger" id="confirmDeleteBtn">
+                    <i class="fas fa-trash-alt"></i> Excluir Personagem
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/menu.js"></script>
+    <script src="js/characters-list.js"></script>
+</body>
+</html> 

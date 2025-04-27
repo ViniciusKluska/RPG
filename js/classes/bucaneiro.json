@@ -1,0 +1,504 @@
+{
+  "id": "bucaneiro",
+  "name": "Bucaneiro",
+  "description": "Em um mundo de espadas largas e armaduras pesadas, onde a força desempenha um papel fundamental na batalha, o bucaneiro é um combatente atípico. Valendo-se de agilidade, ousadia e completo desprezo pelo perigo, o bucaneiro é tanto esgrimista quanto fanfarrão, executando golpes e estocadas com a mesma rapidez com que desfere insultos e provocações.",
+  "flavor_text": "O estilo de vida dos bucaneiros nasceu nos mares, entre marujos, piratas e corsários que aprenderam a enfrentar a fúria e os monstros dos oceanos com agilidade e ousadia. Em terra, estes homens e mulheres declamavam suas histórias de heroísmo improvável e vitórias impossíveis entre uma dose e outra de rum, muitas vezes sob os aplausos de plebeus impressionáveis.",
+  "cultural_text": "Hoje, em todos os reinos é possível encontrar esses indivíduos que se destacam graças a suas armaduras leves, roupas requintadas e charme irresistível. Muitos adaptaram seu estilo às vestimentas e armas nativas de sua região, mas sempre mantendo a leveza e elegância. Em particular, o reino de Zibrene, com seu apreço cultural pela sofisticação, é o lar de muitos bucaneiros. Carismáticos, insolentes e ousados, bucaneiros são aventureiros natos, constantemente em busca de novas emoções para viver, tesouros para encontrar e corações para conquistar.",
+  "base_stats": {
+    "hit_points": {
+      "base": 16,
+      "per_level": 4,
+      "bonus": "Constituição"
+    },
+    "mana_points": {
+      "per_level": 3
+    }
+  },
+  "proficiencies": {
+    "weapons": [
+      "Armas marciais"
+    ]
+  },
+  "skills": {
+    "choices_fixed": {
+      "amount": 1,
+      "from": [
+        "Luta (For)",
+        "Pontaria (Des)"
+      ]
+    },
+    "fixed": [
+      "Reflexos (Des)"
+    ],
+    "choices": {
+      "amount": 4,
+      "from": [
+        "Acrobacia (Des)",
+        "Atletismo (For)",
+        "Atuação (Car)",
+        "Enganação (Car)",
+        "Fortitude (Con)",
+        "Furtividade (Des)",
+        "Iniciativa (Des)",
+        "Intimidação (Car)",
+        "Luta (For)",
+        "Ofício (Int)",
+        "Percepção (Sab)",
+        "Pontaria (Des)"
+      ]
+    }
+  },
+  "abilities": {
+    "1": [
+      {
+        "name": "Audácia",
+        "type": "active",
+        "cost": "2 PM",
+        "effects": {
+          "description": "Soma Carisma em teste de perícia",
+          "restriction": "Não pode ser usado em testes de ataque"
+        }
+      },
+      {
+        "name": "Insolência",
+        "type": "passive",
+        "effects": {
+          "defense_bonus": "Carisma (limitado pelo nível)",
+          "restrictions": [
+            "Sem armadura pesada",
+            "Não pode estar imóvel"
+          ]
+        }
+      }
+    ],
+    "2": [
+      {
+        "name": "Evasão",
+        "type": "passive",
+        "effects": {
+          "description": "Não sofre dano em testes de Reflexos bem-sucedidos que causariam metade do dano",
+          "restrictions": [
+            "Sem armadura pesada",
+            "Não pode estar imóvel"
+          ]
+        }
+      }
+    ],
+    "3": [
+      {
+        "name": "Esquiva Sagaz",
+        "type": "passive",
+        "effects": {
+          "bonus": {
+            "defense": 1,
+            "reflex": 1
+          },
+          "scaling": {
+            "every": 4,
+            "bonus": 1
+          },
+          "restrictions": [
+            "Sem armadura pesada",
+            "Não pode estar imóvel"
+          ]
+        }
+      }
+    ],
+    "5": [
+      {
+        "name": "Panache",
+        "type": "passive",
+        "effects": {
+          "trigger": [
+            "Acerto crítico",
+            "Reduzir inimigo a 0 PV"
+          ],
+          "effect": "Recupera 1 PM"
+        }
+      }
+    ],
+    "10": [
+      {
+        "name": "Evasão Aprimorada",
+        "type": "passive",
+        "effects": {
+          "description": "Não sofre dano em testes de Reflexos bem-sucedidos e metade do dano em falhas",
+          "restrictions": [
+            "Sem armadura pesada",
+            "Não pode estar imóvel"
+          ]
+        }
+      }
+    ],
+    "20": [
+      {
+        "name": "Sorte dos Ousados",
+        "type": "active",
+        "cost": "5 PM",
+        "effects": {
+          "description": "Rola novamente um teste recém realizado",
+          "special": "Resultados 11+ na segunda rolagem contam como 20 natural"
+        }
+      }
+    ]
+  },
+  "powers": {
+    "progression": {
+      "start_level": 2,
+      "frequency": "every_level"
+    },
+    "bravata_rules": {
+      "requirements": [
+        "Deve envolver desafio com ND igual ou maior que o nível do bucaneiro",
+        "Apenas uma Bravata de cada tipo ativa por vez",
+        "Falha ou desistência causa perda de todos PM até próximo dia",
+        "Benefício dura até fim da aventura"
+      ]
+    },
+    "list": [
+      {
+        "name": "Abusar dos Fracos",
+        "type": "combat",
+        "effects": {
+          "description": "Aumenta dano em um passo contra alvos sob efeito de medo"
+        },
+        "prerequisites": {
+          "powers": [
+            "Flagelo dos Mares"
+          ]
+        }
+      },
+      {
+        "name": "Amigos no Porto",
+        "type": "social",
+        "effects": {
+          "description": "Encontra amigo que concede favor ou ajuda como parceiro veterano",
+          "test": "Carisma CD 10"
+        },
+        "prerequisites": {
+          "attributes": {
+            "CAR": 1
+          },
+          "level": 6
+        }
+      },
+      {
+        "name": "Aparar",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "description": "Teste de ataque contra ataque inimigo para evitá-lo",
+          "frequency": "Uma vez por rodada",
+          "restrictions": "Apenas com armas corpo a corpo leves ou ágeis"
+        },
+        "prerequisites": {
+          "powers": [
+            "Esgrimista"
+          ]
+        }
+      },
+      {
+        "name": "Apostador",
+        "type": "social",
+        "effects": {
+          "description": "Participa de apostas para ganhar dinheiro",
+          "test": "Enganação",
+          "time": "1 dia"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Enganação"
+          ]
+        }
+      },
+      {
+        "name": "Ataque Acrobático",
+        "type": "combat",
+        "effects": {
+          "description": "Bônus em ataque e dano após movimento acrobático",
+          "bonus": {
+            "attack": 2,
+            "damage": 2
+          }
+        }
+      },
+      {
+        "name": "Aumento de Atributo",
+        "type": "attribute",
+        "effects": {
+          "bonus": "+1 em um atributo",
+          "reselectable": "Uma vez por patamar por atributo"
+        }
+      },
+      {
+        "name": "Aventureiro Ávido",
+        "type": "active",
+        "cost": "5 PM",
+        "effects": {
+          "description": "Ação padrão ou movimento adicional por rodada",
+          "special": "Custo reduz em 2 PM com Surto Heroico"
+        }
+      },
+      {
+        "name": "Bravata Audaz",
+        "type": "bravata",
+        "effects": {
+          "description": "Jura realizar façanha específica",
+          "reward": "+2 PM por nível até fim da aventura"
+        }
+      },
+      {
+        "name": "Bravata Imprudente",
+        "type": "bravata",
+        "effects": {
+          "description": "Luta com restrição auto-imposta",
+          "reward": "+2 em ataques e margem de ameaça até fim da aventura"
+        }
+      },
+      {
+        "name": "Charme Salvador",
+        "type": "enhancement",
+        "effects": {
+          "description": "Reduz custo de Audácia em 1 PM em testes de resistência"
+        }
+      },
+      {
+        "name": "En Garde",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "action": "movimento",
+          "bonus": {
+            "defense": 2,
+            "threat_range": 2
+          },
+          "duration": "cena",
+          "restrictions": "Apenas com armas corpo a corpo leves ou ágeis"
+        },
+        "prerequisites": {
+          "powers": [
+            "Esgrimista"
+          ]
+        }
+      },
+      {
+        "name": "Entrada Triunfal",
+        "type": "social",
+        "effects": {
+          "description": "Teste de perícia para ganhar PM temporários",
+          "frequency": "Uma vez por aventura",
+          "scaling": {
+            "base": "5 PM",
+            "per_10": "+5 PM"
+          }
+        }
+      },
+      {
+        "name": "Esgrimista",
+        "type": "combat",
+        "effects": {
+          "description": "Soma Inteligência no dano com armas leves ou ágeis",
+          "limit": "Nível"
+        },
+        "prerequisites": {
+          "attributes": {
+            "INT": 1
+          }
+        }
+      },
+      {
+        "name": "Flagelo dos Mares",
+        "type": "fear",
+        "effects": {
+          "description": "Pode lançar Amedrontar",
+          "key_attribute": "Carisma"
+        },
+        "prerequisites": {
+          "skills": [
+            "Treinado em Intimidação"
+          ]
+        }
+      },
+      {
+        "name": "Folião",
+        "type": "social",
+        "effects": {
+          "description": "Bônus em perícias sociais e melhora atitude em festas",
+          "bonus": {
+            "charisma_skills": 2
+          }
+        },
+        "prerequisites": {
+          "attributes": {
+            "CAR": 1
+          }
+        }
+      },
+      {
+        "name": "Galanteio Encorajador",
+        "type": "social",
+        "effects": {
+          "description": "Teste contra criatura atraente para ganhar PM temporários",
+          "frequency": "Uma vez por cena",
+          "reward": "1d6 PM temporários"
+        }
+      },
+      {
+        "name": "Mão Amiga",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "description": "Recebe ajuda de parceiro iniciante por uma rodada",
+          "frequency": "Uma vez por cena"
+        },
+        "prerequisites": {
+          "attributes": {
+            "CAR": 3
+          }
+        }
+      },
+      {
+        "name": "Ousadia Inconsequente",
+        "type": "active",
+        "effects": {
+          "description": "Adiciona 1d6 ao teste mas penalidade na falha",
+          "frequency": "Uma vez por rodada",
+          "penalty": "-1 em perícias até fim da cena"
+        }
+      },
+      {
+        "name": "Pernas do Mar",
+        "type": "passive",
+        "effects": {
+          "bonus": {
+            "acrobatics": 2,
+            "athletics": 2
+          },
+          "special": "Não fica desprevenido ao se equilibrar ou escalar"
+        }
+      },
+      {
+        "name": "Presença Paralisante",
+        "type": "passive",
+        "effects": {
+          "description": "Soma Carisma em Iniciativa e ação extra se for primeiro",
+          "bonus": "Carisma em Iniciativa"
+        },
+        "prerequisites": {
+          "attributes": {
+            "CAR": 1
+          },
+          "level": 4
+        }
+      },
+      {
+        "name": "Ripostar",
+        "type": "active",
+        "cost": "1 PM",
+        "effects": {
+          "description": "Ataque imediato após aparar com sucesso"
+        },
+        "prerequisites": {
+          "powers": [
+            "Aparar"
+          ],
+          "level": 12
+        }
+      },
+      {
+        "name": "Touché",
+        "type": "active",
+        "cost": "2 PM",
+        "effects": {
+          "description": "Aumenta dano e margem de ameaça após movimento",
+          "bonus": {
+            "damage": "um passo",
+            "threat_range": 5
+          }
+        },
+        "prerequisites": {
+          "powers": [
+            "Esgrimista"
+          ],
+          "level": 10
+        }
+      }
+    ]
+  },
+  "advancement_table": {
+    "1": [
+      "Audácia",
+      "Insolência"
+    ],
+    "2": [
+      "Evasão",
+      "Poder de bucaneiro"
+    ],
+    "3": [
+      "Esquiva sagaz +1",
+      "Poder de bucaneiro"
+    ],
+    "4": [
+      "Poder de bucaneiro"
+    ],
+    "5": [
+      "Panache",
+      "Poder de bucaneiro"
+    ],
+    "6": [
+      "Poder de bucaneiro"
+    ],
+    "7": [
+      "Esquiva sagaz +2",
+      "Poder de bucaneiro"
+    ],
+    "8": [
+      "Poder de bucaneiro"
+    ],
+    "9": [
+      "Poder de bucaneiro"
+    ],
+    "10": [
+      "Evasão aprimorada",
+      "Poder de bucaneiro"
+    ],
+    "11": [
+      "Esquiva sagaz +3",
+      "Poder de bucaneiro"
+    ],
+    "12": [
+      "Poder de bucaneiro"
+    ],
+    "13": [
+      "Poder de bucaneiro"
+    ],
+    "14": [
+      "Poder de bucaneiro"
+    ],
+    "15": [
+      "Esquiva sagaz +4",
+      "Poder de bucaneiro"
+    ],
+    "16": [
+      "Poder de bucaneiro"
+    ],
+    "17": [
+      "Poder de bucaneiro"
+    ],
+    "18": [
+      "Poder de bucaneiro"
+    ],
+    "19": [
+      "Esquiva sagaz +5",
+      "Poder de bucaneiro"
+    ],
+    "20": [
+      "Poder de bucaneiro",
+      "Sorte dos ousados"
+    ]
+  },
+  "role": {
+    "combat": "skirmisher",
+    "party": "striker"
+  }
+}
